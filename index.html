@@ -302,10 +302,10 @@
                 .then(res => res.text())
                 .then(csv => {
                     const rows = csv.split("\n").map(r => r.split(","));
-                    const headers = rows[0];
+                    const headers = rows[0].map(h => h.trim());
                     const products = rows.slice(1).map(row => {
                         let obj = {};
-                        headers.forEach((h, i) => obj[h.trim()] = row[i]?.trim());
+                        headers.forEach((h, i) => obj[h] = row[i]?.trim());
                         return obj;
                     });
 
