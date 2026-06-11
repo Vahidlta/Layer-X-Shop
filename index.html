@@ -208,6 +208,10 @@ Papa.parse(CSV_URL, {
 });
 
 function renderProducts(products) {
+
+    // مرتب‌سازی از جدید به قدیم
+    products.sort((a, b) => Number(b.id) - Number(a.id));
+
     const container = document.getElementById("products");
     container.innerHTML = "";
 
