@@ -44,7 +44,7 @@
             gap: 10px;
         }
 
-        .logo { height: 42px; }
+        .logo { height: 42px; transition: 0.2s; }
 
         .brand-title { font-size: 18px; margin: 0; font-weight: 700; }
         .brand-sub { font-size: 12px; color: #6b7280; margin: 0; }
@@ -109,10 +109,10 @@
             border-radius: 50%;
             cursor: pointer;
             border: 2px solid transparent;
+            transition: 0.2s;
         }
 
         .color-circle.white { border: 1px solid #ccc; }
-        .color-circle.selected { border-color: #111111; transform: scale(1.15); }
 
         .product-title { font-size: 16px; font-weight: 600; margin: 4px 0; }
         .product-info { font-size: 13px; color: #4b5563; line-height: 1.8; margin-bottom: 12px; }
@@ -168,35 +168,35 @@ const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSrjXH-PDT3MeRA
 
 let selectedColor = null;
 
+/* --- انتخاب رنگ: تبدیل دایره به مربع --- */
 function selectColor(el, color) {
     selectedColor = color;
 
     const all = el.parentElement.querySelectorAll('.color-circle');
     all.forEach(c => {
-        c.classList.remove('selected');
-        c.style.borderRadius = "50%";   // همه دوباره دایره می‌شن
-        c.style.transform = "scale(1)"; // اندازه عادی
+        c.style.borderRadius = "50%";
+        c.style.transform = "scale(1)";
     });
 
-    el.classList.add('selected');
-
-    // تبدیل دایره به مربع
     el.style.borderRadius = "6px";
-
-    // کمی بزرگ‌تر برای تاکید
     el.style.transform = "scale(1.25)";
 }
 
-
-function addToCart(product) {
+/* --- افزودن به سبد خرید با تعداد --- */
+function addToCart(product, qty) {
     if (!selectedColor) return alert("لطفاً رنگ را انتخاب کنید");
+
     product.color = selectedColor;
+    product.qty = Number(qty);
+
     let cart = JSON.parse(localStorage.getItem("cart") || "[]");
     cart.push(product);
     localStorage.setItem("cart", JSON.stringify(cart));
+
     alert("به سبد خرید اضافه شد");
 }
 
+/* --- رنگ‌ها --- */
 function getColorCode(name) {
     if (name === "سفید") return "#ffffff";
     if (name === "طوسی") return "#bfbfbf";
@@ -214,12 +214,14 @@ function getColorCode(name) {
 /* --- ریسپانسیو موبایل بدون CSS --- */
 function applyMobileLayout() {
     const grid = document.querySelector(".products-grid");
-    if (!grid) return;
+    const logo = document.querySelector(".logo");
 
     if (window.innerWidth <= 768) {
         grid.style.gridTemplateColumns = "1fr";
+        logo.style.height = "32px";
     } else {
         grid.style.gridTemplateColumns = "repeat(3, 1fr)";
+        logo.style.height = "42px";
     }
 }
 
@@ -274,7 +276,12 @@ function renderProducts(products) {
 
                 <p class="product-price">${p.price} تومان</p>
 
-                <button class="btn" onclick='addToCart(${JSON.stringify(p)})'>
+                <div style="margin-bottom: 12px;">
+                    <input type="number" class="qty-input" value="1" min="1" 
+                           style="width:60px; padding:6px; border-radius:8px; border:1px solid #ccc; text-align:center;">
+                </div>
+
+                <button class="btn" onclick='addToCart(${JSON.stringify(p)}, this.parentElement.querySelector(".qty-input").value)'>
                     افزودن به سبد خرید
                 </button>
 
