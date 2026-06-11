@@ -250,90 +250,8 @@
     <!-- Main -->
     <main class="main">
 
-        <div class="products-grid">
+        <div class="products-grid" id="products"></div>
 
-            <!-- PRODUCT 1 -->
-            <div class="product-card">
-                <div class="status in-stock">موجود</div>
-
-                <img src="product1.jpg" class="product-image">
-
-                <div class="color-options">
-                    <div class="color-circle white" style="background:#ffffff" onclick="selectColor(this, 'سفید')"></div>
-                    <div class="color-circle" style="background:#bfbfbf" onclick="selectColor(this, 'طوسی')"></div>
-                    <div class="color-circle" style="background:#000000" onclick="selectColor(this, 'مشکی')"></div>
-                </div>
-
-                <h3 class="product-title">مدل خودرو کلاسیک</h3>
-
-                <div class="product-info">
-                    نوع مواد : PLA<br>
-                    ابعاد محصول : 12×6×4 سانتی‌متر<br>
-                    توضیحات : چاپ سه‌بعدی با کیفیت بالا
-                </div>
-
-                <p class="product-price">۲۵۰,۰۰۰ تومان</p>
-
-                <button class="btn" onclick="addToCart({name:'مدل خودرو کلاسیک', price:250000, image:'product1.jpg'})">
-                    افزودن به سبد خرید
-                </button>
-            </div>
-
-            <!-- PRODUCT 2 -->
-            <div class="product-card">
-                <div class="status out-stock">ناموجود</div>
-
-                <img src="product2.jpg" class="product-image">
-
-                <div class="color-options">
-                    <div class="color-circle white" style="background:#ffffff" onclick="selectColor(this, 'سفید')"></div>
-                    <div class="color-circle" style="background:#bfbfbf" onclick="selectColor(this, 'طوسی')"></div>
-                    <div class="color-circle" style="background:#000000" onclick="selectColor(this, 'مشکی')"></div>
-                </div>
-
-                <h3 class="product-title">مجسمه مکانیکی</h3>
-
-                <div class="product-info">
-                    نوع مواد : PETG<br>
-                    ابعاد محصول : 14×7×5 سانتی‌متر<br>
-                    توضیحات : مناسب برای دکور صنعتی
-                </div>
-
-                <p class="product-price">۳۲۰,۰۰۰ تومان</p>
-
-                <button class="btn" onclick="addToCart({name:'مجسمه مکانیکی', price:320000, image:'product2.jpg'})">
-                    افزودن به سبد خرید
-                </button>
-            </div>
-
-            <!-- PRODUCT 3 -->
-            <div class="product-card">
-                <div class="status in-stock">موجود</div>
-
-                <img src="product3.jpg" class="product-image">
-
-                <div class="color-options">
-                    <div class="color-circle white" style="background:#ffffff" onclick="selectColor(this, 'سفید')"></div>
-                    <div class="color-circle" style="background:#bfbfbf" onclick="selectColor(this, 'طوسی')"></div>
-                    <div class="color-circle" style="background:#000000" onclick="selectColor(this, 'مشکی')"></div>
-                </div>
-
-                <h3 class="product-title">قطعه سفارشی خودرو</h3>
-
-                <div class="product-info">
-                    نوع مواد : TPU<br>
-                    ابعاد محصول : 10×5×3 سانتی‌متر<br>
-                    توضیحات : انعطاف‌پذیر و مقاوم
-                </div>
-
-                <p class="product-price">۴۵۰,۰۰۰ تومان</p>
-
-                <button class="btn" onclick="addToCart({name:'قطعه سفارشی خودرو', price:450000, image:'product3.jpg'})">
-                    افزودن به سبد خرید
-                </button>
-            </div>
-
-        </div>
     </main>
 
     <!-- Footer -->
@@ -343,6 +261,9 @@
 
     <!-- SCRIPT -->
     <script>
+
+        const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSrjXH-PDT3MeRA9UGsaJBQwoRfErVtwjifuF7QtFvDcLfwxIki-A7F2FjAD_V5OEDrJSMUrj03aUBT/pub?gid=0&single=true&output=csv";
+
         let selectedColor = null;
 
         function selectColor(el, color) {
@@ -368,6 +289,73 @@
 
             alert("محصول با موفقیت به سبد خرید اضافه شد");
         }
+
+        function getColorCode(name) {
+            if (name === "سفید") return "#ffffff";
+            if (name === "طوسی") return "#bfbfbf";
+            if (name === "مشکی") return "#000000";
+            return "#000";
+        }
+
+        function loadProducts() {
+            fetch(CSV_URL)
+                .then(res => res.text())
+                .then(csv => {
+                    const rows = csv.split("\n").map(r => r.split(","));
+                    const headers = rows[0];
+                    const products = rows.slice(1).map(row => {
+                        let obj = {};
+                        headers.forEach((h, i) => obj[h.trim()] = row[i]?.trim());
+                        return obj;
+                    });
+
+                    renderProducts(products);
+                });
+        }
+
+        function renderProducts(products) {
+            const container = document.getElementById("products");
+            container.innerHTML = "";
+
+            products.forEach(p => {
+                container.innerHTML += `
+                    <div class="product-card">
+
+                        <div class="status ${p.stock === 'موجود' ? 'in-stock' : 'out-stock'}">
+                            ${p.stock}
+                        </div>
+
+                        <img src="${p.image}" class="product-image">
+
+                        <div class="color-options">
+                            ${p.colors.split(",").map(c => `
+                                <div class="color-circle ${c === 'سفید' ? 'white' : ''}"
+                                     style="background:${getColorCode(c)}"
+                                     onclick="selectColor(this, '${c}')"></div>
+                            `).join("")}
+                        </div>
+
+                        <h3 class="product-title">${p.name}</h3>
+
+                        <div class="product-info">
+                            نوع مواد : ${p.material}<br>
+                            ابعاد محصول : ${p.size}<br>
+                            توضیحات : ${p.desc}
+                        </div>
+
+                        <p class="product-price">${p.price} تومان</p>
+
+                        <button class="btn" onclick='addToCart(${JSON.stringify(p)})'>
+                            افزودن به سبد خرید
+                        </button>
+
+                    </div>
+                `;
+            });
+        }
+
+        loadProducts();
+
     </script>
 
 </body>
