@@ -188,8 +188,16 @@ function getColorCode(name) {
     if (name === "سفید") return "#ffffff";
     if (name === "طوسی") return "#bfbfbf";
     if (name === "مشکی") return "#000000";
+    if (name === "قرمز") return "#ff0000";
+    if (name === "آبی") return "#007bff";
+    if (name === "سبز") return "#00cc66";
+    if (name === "زرد") return "#ffcc00";
+    if (name === "نارنجی") return "#ff8800";
+    if (name === "طلایی") return "#d4af37";
+    if (name === "نقره‌ای") return "#c0c0c0";
     return "#000";
 }
+
 
 Papa.parse(CSV_URL, {
     download: true,
