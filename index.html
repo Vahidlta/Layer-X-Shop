@@ -5,6 +5,9 @@
     <title>فروشگاه Layer‑X</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- PapaParse برای خواندن CSV بدون خطا -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
     <style>
         @font-face {
             font-family: 'Vazir';
@@ -21,7 +24,7 @@
             color: #111111;
         }
 
-        /* ---------------- HEADER ---------------- */
+        /* HEADER */
         .header {
             display: flex;
             align-items: center;
@@ -41,57 +44,15 @@
             gap: 10px;
         }
 
-        .logo {
-            height: 42px;
-            transition: 0.2s;
-        }
+        .logo { height: 42px; }
 
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-        }
+        .brand-title { font-size: 18px; margin: 0; font-weight: 700; }
+        .brand-sub { font-size: 12px; color: #6b7280; margin: 0; }
 
-        .brand-title {
-            font-size: 18px;
-            margin: 0;
-            font-weight: 700;
-        }
+        .nav { display: flex; gap: 18px; }
+        .nav a { text-decoration: none; color: #111111; font-size: 14px; padding: 6px 10px; border-radius: 8px; }
 
-        .brand-sub {
-            font-size: 12px;
-            color: #6b7280;
-            margin: 0;
-        }
-
-        .nav {
-            display: flex;
-            gap: 18px;
-        }
-
-        .nav a {
-            text-decoration: none;
-            color: #111111;
-            font-size: 14px;
-            padding: 6px 10px;
-            border-radius: 8px;
-            transition: 0.2s;
-        }
-
-        .nav a:hover {
-            background: rgba(17,17,17,0.08);
-        }
-
-        /* MOBILE HEADER */
-        @media (max-width: 768px) {
-            .header { padding: 10px 16px; }
-            .logo { height: 30px; }
-            .brand-title { font-size: 16px; }
-            .brand-sub { font-size: 11px; }
-            .nav { gap: 10px; }
-            .nav a { font-size: 12px; padding: 4px 8px; }
-        }
-
-        /* ---------------- MAIN ---------------- */
+        /* MAIN */
         .main {
             max-width: 1100px;
             margin: 32px auto 140px;
@@ -104,10 +65,6 @@
             gap: 28px;
         }
 
-        @media (max-width: 768px) {
-            .products-grid { grid-template-columns: 1fr; }
-        }
-
         .product-card {
             background: #ffffff;
             border: 1px solid rgba(17,17,17,0.15);
@@ -115,25 +72,17 @@
             padding: 18px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.04);
             transition: 0.25s;
-            display: flex;
-            flex-direction: column;
             position: relative;
-        }
-
-        .product-card:hover {
-            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-            transform: translateY(-6px);
         }
 
         .product-image {
             width: 100%;
             height: 240px;
             object-fit: contain;
-            display: block;
-            margin: 0 auto 12px;
+            margin-bottom: 12px;
         }
 
-        /* ---------------- STATUS ---------------- */
+        /* STATUS */
         .status {
             position: absolute;
             top: 12px;
@@ -144,22 +93,14 @@
             border-radius: 8px;
         }
 
-        .in-stock {
-            background: #d1fae5;
-            color: #065f46;
-        }
+        .in-stock { background: #d1fae5; color: #065f46; }
+        .out-stock { background: #fee2e2; color: #991b1b; }
 
-        .out-stock {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
-        /* ---------------- COLOR SELECTOR ---------------- */
+        /* COLORS */
         .color-options {
             display: flex;
             gap: 8px;
-            margin: 0 0 14px;
-            justify-content: flex-start;
+            margin-bottom: 14px;
         }
 
         .color-circle {
@@ -168,195 +109,140 @@
             border-radius: 50%;
             cursor: pointer;
             border: 2px solid transparent;
-            transition: 0.2s;
         }
 
-        .color-circle.white {
-            border: 1px solid #ccc;
-        }
+        .color-circle.white { border: 1px solid #ccc; }
+        .color-circle.selected { border-color: #111111; transform: scale(1.15); }
 
-        .color-circle.selected {
-            border-color: #111111;
-            transform: scale(1.15);
-        }
-
-        .product-title {
-            font-size: 16px;
-            margin: 4px 0;
-            font-weight: 600;
-        }
-
-        .product-info {
-            font-size: 13px;
-            color: #4b5563;
-            line-height: 1.8;
-            margin-bottom: 12px;
-        }
-
-        .product-price {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 14px;
-        }
+        .product-title { font-size: 16px; font-weight: 600; margin: 4px 0; }
+        .product-info { font-size: 13px; color: #4b5563; line-height: 1.8; margin-bottom: 12px; }
+        .product-price { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
 
         .btn {
-            border: none;
-            outline: none;
-            cursor: pointer;
             padding: 10px 16px;
             border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
             background: #111111;
-            color: #ffffff;
-            transition: 0.2s;
+            color: #fff;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn:hover { background: #000000; }
-
-        /* ---------------- FOOTER ---------------- */
         .footer {
-            border-top: 1px solid rgba(17,17,17,0.15);
-            padding: 20px;
             text-align: center;
-            font-size: 13px;
+            padding: 20px;
             color: #6b7280;
-            background: #ffffff;
+            border-top: 1px solid rgba(17,17,17,0.15);
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header class="header">
+<header class="header">
+    <nav class="nav">
+        <a href="contact.html">تماس با ما</a>
+        <a href="policy.html">قوانین</a>
+        <a href="cart.html">سبد خرید</a>
+    </nav>
 
-        <nav class="nav">
-            <a href="contact.html">تماس با ما</a>
-            <a href="policy.html">قوانین</a>
-            <a href="cart.html">سبد خرید</a>
-        </nav>
-
-        <div class="header-left">
-            <img src="logo.png" alt="Layer-X Logo" class="logo">
-            <div class="brand-text">
-                <h1 class="brand-title">Layer‑X</h1>
-                <p class="brand-sub">طراحی و اجرای مدل‌های سه‌بعدی</p>
-            </div>
+    <div class="header-left">
+        <img src="logo.png" class="logo">
+        <div>
+            <h1 class="brand-title">Layer‑X</h1>
+            <p class="brand-sub">طراحی و اجرای مدل‌های سه‌بعدی</p>
         </div>
+    </div>
+</header>
 
-    </header>
+<main class="main">
+    <div class="products-grid" id="products"></div>
+</main>
 
-    <!-- Main -->
-    <main class="main">
+<footer class="footer">
+    © 2026 Layer‑X — طراحی و اجرای مدل‌های سه‌بعدی
+</footer>
 
-        <div class="products-grid" id="products"></div>
+<script>
 
-    </main>
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSrjXH-PDT3MeRA9UGsaJBQwoRfErVtwjifuF7QtFvDcLfwxIki-A7F2FjAD_V5OEDrJSMUrj03aUBT/pub?gid=0&single=true&output=csv";
 
-    <!-- Footer -->
-    <footer class="footer">
-        © 2026 Layer‑X — طراحی و اجرای مدل‌های سه‌بعدی
-    </footer>
+let selectedColor = null;
 
-    <!-- SCRIPT -->
-    <script>
+function selectColor(el, color) {
+    selectedColor = color;
+    const all = el.parentElement.querySelectorAll('.color-circle');
+    all.forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+}
 
-        const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSrjXH-PDT3MeRA9UGsaJBQwoRfErVtwjifuF7QtFvDcLfwxIki-A7F2FjAD_V5OEDrJSMUrj03aUBT/pub?gid=0&single=true&output=csv";
+function addToCart(product) {
+    if (!selectedColor) return alert("لطفاً رنگ را انتخاب کنید");
+    product.color = selectedColor;
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("به سبد خرید اضافه شد");
+}
 
-        let selectedColor = null;
+function getColorCode(name) {
+    if (name === "سفید") return "#ffffff";
+    if (name === "طوسی") return "#bfbfbf";
+    if (name === "مشکی") return "#000000";
+    return "#000";
+}
 
-        function selectColor(el, color) {
-            selectedColor = color;
+Papa.parse(CSV_URL, {
+    download: true,
+    header: true,
+    complete: function(result) {
+        renderProducts(result.data);
+    }
+});
 
-            const all = el.parentElement.querySelectorAll('.color-circle');
-            all.forEach(c => c.classList.remove('selected'));
+function renderProducts(products) {
+    const container = document.getElementById("products");
+    container.innerHTML = "";
 
-            el.classList.add('selected');
-        }
+    products.forEach(p => {
+        if (!p.name) return;
 
-        function addToCart(product) {
-            if (!selectedColor) {
-                alert("لطفاً رنگ مورد نظر را انتخاب کنید");
-                return;
-            }
+        container.innerHTML += `
+            <div class="product-card">
 
-            product.color = selectedColor;
+                <div class="status ${p.stock === 'موجود' ? 'in-stock' : 'out-stock'}">
+                    ${p.stock}
+                </div>
 
-            let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-            cart.push(product);
-            localStorage.setItem("cart", JSON.stringify(cart));
+                <img src="${p.image}" class="product-image">
 
-            alert("محصول با موفقیت به سبد خرید اضافه شد");
-        }
+                <div class="color-options">
+                    ${p.colors.split(",").map(c => `
+                        <div class="color-circle ${c === 'سفید' ? 'white' : ''}"
+                             style="background:${getColorCode(c)}"
+                             onclick="selectColor(this, '${c}')"></div>
+                    `).join("")}
+                </div>
 
-        function getColorCode(name) {
-            if (name === "سفید") return "#ffffff";
-            if (name === "طوسی") return "#bfbfbf";
-            if (name === "مشکی") return "#000000";
-            return "#000";
-        }
+                <h3 class="product-title">${p.name}</h3>
 
-        function loadProducts() {
-            fetch(CSV_URL)
-                .then(res => res.text())
-                .then(csv => {
-                    const rows = csv.split("\n").map(r => r.split(","));
-                    const headers = rows[0].map(h => h.trim());
-                    const products = rows.slice(1).map(row => {
-                        let obj = {};
-                        headers.forEach((h, i) => obj[h] = row[i]?.trim());
-                        return obj;
-                    });
+                <div class="product-info">
+                    نوع مواد : ${p.material}<br>
+                    ابعاد محصول : ${p.size}<br>
+                    توضیحات : ${p.desc}
+                </div>
 
-                    renderProducts(products);
-                });
-        }
+                <p class="product-price">${p.price} تومان</p>
 
-        function renderProducts(products) {
-            const container = document.getElementById("products");
-            container.innerHTML = "";
+                <button class="btn" onclick='addToCart(${JSON.stringify(p)})'>
+                    افزودن به سبد خرید
+                </button>
 
-            products.forEach(p => {
-                container.innerHTML += `
-                    <div class="product-card">
+            </div>
+        `;
+    });
+}
 
-                        <div class="status ${p.stock === 'موجود' ? 'in-stock' : 'out-stock'}">
-                            ${p.stock}
-                        </div>
-
-                        <img src="${p.image}" class="product-image">
-
-                        <div class="color-options">
-                            ${p.colors.split(",").map(c => `
-                                <div class="color-circle ${c === 'سفید' ? 'white' : ''}"
-                                     style="background:${getColorCode(c)}"
-                                     onclick="selectColor(this, '${c}')"></div>
-                            `).join("")}
-                        </div>
-
-                        <h3 class="product-title">${p.name}</h3>
-
-                        <div class="product-info">
-                            نوع مواد : ${p.material}<br>
-                            ابعاد محصول : ${p.size}<br>
-                            توضیحات : ${p.desc}
-                        </div>
-
-                        <p class="product-price">${p.price} تومان</p>
-
-                        <button class="btn" onclick='addToCart(${JSON.stringify(p)})'>
-                            افزودن به سبد خرید
-                        </button>
-
-                    </div>
-                `;
-            });
-        }
-
-        loadProducts();
-
-    </script>
+</script>
 
 </body>
 </html>
