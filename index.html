@@ -182,7 +182,19 @@ function selectColor(el, color) {
     el.style.transform = "scale(1.25)";
 }
 
-/* --- افزودن به سبد خرید با تعداد --- */
+/* --- تغییر تعداد با + و – --- */
+function changeQty(btn, amount) {
+    const box = btn.parentElement;
+    const valueEl = box.querySelector(".qty-value");
+    let qty = Number(valueEl.innerText);
+
+    qty += amount;
+    if (qty < 1) qty = 1;
+
+    valueEl.innerText = qty;
+}
+
+/* --- افزودن به سبد خرید --- */
 function addToCart(product, qty) {
     if (!selectedColor) return alert("لطفاً رنگ را انتخاب کنید");
 
@@ -276,12 +288,25 @@ function renderProducts(products) {
 
                 <p class="product-price">${p.price} تومان</p>
 
-                <div style="margin-bottom: 12px;">
-                    <input type="number" class="qty-input" value="1" min="1" 
-                           style="width:60px; padding:6px; border-radius:8px; border:1px solid #ccc; text-align:center;">
+                <div class="qty-box" style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+
+                    <button onclick="changeQty(this, -1)"
+                        style="width:32px; height:32px; border-radius:8px; border:none; background:#eee; font-size:20px; cursor:pointer;">
+                        –
+                    </button>
+
+                    <span class="qty-value" style="min-width:30px; text-align:center; font-size:16px; font-weight:600;">
+                        1
+                    </span>
+
+                    <button onclick="changeQty(this, 1)"
+                        style="width:32px; height:32px; border-radius:8px; border:none; background:#eee; font-size:20px; cursor:pointer;">
+                        +
+                    </button>
+
                 </div>
 
-                <button class="btn" onclick='addToCart(${JSON.stringify(p)}, this.parentElement.querySelector(".qty-input").value)'>
+                <button class="btn" onclick='addToCart(${JSON.stringify(p)}, this.parentElement.querySelector(".qty-value").innerText)'>
                     افزودن به سبد خرید
                 </button>
 
