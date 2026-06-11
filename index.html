@@ -117,6 +117,7 @@
             transition: 0.25s;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .product-card:hover {
@@ -132,24 +133,33 @@
             margin: 0 auto 12px;
         }
 
-        .product-title {
-            font-size: 16px;
-            margin: 4px 0;
+        /* ---------------- STATUS ---------------- */
+        .status {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 13px;
             font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 8px;
         }
 
-        .product-info {
-            font-size: 13px;
-            color: #4b5563;
-            line-height: 1.8;
-            margin-bottom: 12px;
+        .in-stock {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .out-stock {
+            background: #fee2e2;
+            color: #991b1b;
         }
 
         /* ---------------- COLOR SELECTOR ---------------- */
         .color-options {
             display: flex;
             gap: 8px;
-            margin: 10px 0 14px;
+            margin: 0 0 14px;
+            justify-content: flex-start;
         }
 
         .color-circle {
@@ -161,9 +171,26 @@
             transition: 0.2s;
         }
 
+        .color-circle.white {
+            border: 1px solid #ccc;
+        }
+
         .color-circle.selected {
             border-color: #111111;
             transform: scale(1.15);
+        }
+
+        .product-title {
+            font-size: 16px;
+            margin: 4px 0;
+            font-weight: 600;
+        }
+
+        .product-info {
+            font-size: 13px;
+            color: #4b5563;
+            line-height: 1.8;
+            margin-bottom: 12px;
         }
 
         .product-price {
@@ -227,19 +254,22 @@
 
             <!-- PRODUCT 1 -->
             <div class="product-card">
+                <div class="status in-stock">موجود</div>
+
                 <img src="product1.jpg" class="product-image">
+
+                <div class="color-options">
+                    <div class="color-circle white" style="background:#ffffff" onclick="selectColor(this, 'سفید')"></div>
+                    <div class="color-circle" style="background:#bfbfbf" onclick="selectColor(this, 'طوسی')"></div>
+                    <div class="color-circle" style="background:#000000" onclick="selectColor(this, 'مشکی')"></div>
+                </div>
+
                 <h3 class="product-title">مدل خودرو کلاسیک</h3>
 
                 <div class="product-info">
                     نوع مواد : PLA<br>
                     ابعاد محصول : 12×6×4 سانتی‌متر<br>
                     توضیحات : چاپ سه‌بعدی با کیفیت بالا
-                </div>
-
-                <div class="color-options">
-                    <div class="color-circle" style="background:#ffffff" onclick="selectColor(this, 'سفید')"></div>
-                    <div class="color-circle" style="background:#bfbfbf" onclick="selectColor(this, 'طوسی')"></div>
-                    <div class="color-circle" style="background:#000000" onclick="selectColor(this, 'مشکی')"></div>
                 </div>
 
                 <p class="product-price">۲۵۰,۰۰۰ تومان</p>
@@ -251,19 +281,22 @@
 
             <!-- PRODUCT 2 -->
             <div class="product-card">
+                <div class="status out-stock">ناموجود</div>
+
                 <img src="product2.jpg" class="product-image">
+
+                <div class="color-options">
+                    <div class="color-circle white" style="background:#ffffff" onclick="selectColor(this, 'سفید')"></div>
+                    <div class="color-circle" style="background:#bfbfbf" onclick="selectColor(this, 'طوسی')"></div>
+                    <div class="color-circle" style="background:#000000" onclick="selectColor(this, 'مشکی')"></div>
+                </div>
+
                 <h3 class="product-title">مجسمه مکانیکی</h3>
 
                 <div class="product-info">
                     نوع مواد : PETG<br>
                     ابعاد محصول : 14×7×5 سانتی‌متر<br>
                     توضیحات : مناسب برای دکور صنعتی
-                </div>
-
-                <div class="color-options">
-                    <div class="color-circle" style="background:#ffffff" onclick="selectColor(this, 'سفید')"></div>
-                    <div class="color-circle" style="background:#bfbfbf" onclick="selectColor(this, 'طوسی')"></div>
-                    <div class="color-circle" style="background:#000000" onclick="selectColor(this, 'مشکی')"></div>
                 </div>
 
                 <p class="product-price">۳۲۰,۰۰۰ تومان</p>
@@ -275,19 +308,22 @@
 
             <!-- PRODUCT 3 -->
             <div class="product-card">
+                <div class="status in-stock">موجود</div>
+
                 <img src="product3.jpg" class="product-image">
+
+                <div class="color-options">
+                    <div class="color-circle white" style="background:#ffffff" onclick="selectColor(this, 'سفید')"></div>
+                    <div class="color-circle" style="background:#bfbfbf" onclick="selectColor(this, 'طوسی')"></div>
+                    <div class="color-circle" style="background:#000000" onclick="selectColor(this, 'مشکی')"></div>
+                </div>
+
                 <h3 class="product-title">قطعه سفارشی خودرو</h3>
 
                 <div class="product-info">
                     نوع مواد : TPU<br>
                     ابعاد محصول : 10×5×3 سانتی‌متر<br>
                     توضیحات : انعطاف‌پذیر و مقاوم
-                </div>
-
-                <div class="color-options">
-                    <div class="color-circle" style="background:#ffffff" onclick="selectColor(this, 'سفید')"></div>
-                    <div class="color-circle" style="background:#bfbfbf" onclick="selectColor(this, 'طوسی')"></div>
-                    <div class="color-circle" style="background:#000000" onclick="selectColor(this, 'مشکی')"></div>
                 </div>
 
                 <p class="product-price">۴۵۰,۰۰۰ تومان</p>
