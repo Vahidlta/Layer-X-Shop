@@ -11,9 +11,7 @@
             src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font/dist/Vazir.woff2') format('woff2');
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -85,36 +83,18 @@
 
         /* MOBILE HEADER */
         @media (max-width: 768px) {
-            .header {
-                padding: 10px 16px;
-            }
-
-            .logo {
-                height: 30px;
-            }
-
-            .brand-title {
-                font-size: 16px;
-            }
-
-            .brand-sub {
-                font-size: 11px;
-            }
-
-            .nav {
-                gap: 10px;
-            }
-
-            .nav a {
-                font-size: 12px;
-                padding: 4px 8px;
-            }
+            .header { padding: 10px 16px; }
+            .logo { height: 30px; }
+            .brand-title { font-size: 16px; }
+            .brand-sub { font-size: 11px; }
+            .nav { gap: 10px; }
+            .nav a { font-size: 12px; padding: 4px 8px; }
         }
 
         /* ---------------- MAIN ---------------- */
         .main {
             max-width: 1100px;
-            margin: 32px auto 140px; /* فاصله زیادتر برای فوتر */
+            margin: 32px auto 140px;
             padding: 0 16px;
         }
 
@@ -125,9 +105,7 @@
         }
 
         @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
+            .products-grid { grid-template-columns: 1fr; }
         }
 
         .product-card {
@@ -167,6 +145,27 @@
             margin-bottom: 12px;
         }
 
+        /* ---------------- COLOR SELECTOR ---------------- */
+        .color-options {
+            display: flex;
+            gap: 8px;
+            margin: 10px 0 14px;
+        }
+
+        .color-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .color-circle.selected {
+            border-color: #111111;
+            transform: scale(1.15);
+        }
+
         .product-price {
             font-size: 15px;
             font-weight: 700;
@@ -186,9 +185,7 @@
             transition: 0.2s;
         }
 
-        .btn:hover {
-            background: #000000;
-        }
+        .btn:hover { background: #000000; }
 
         /* ---------------- FOOTER ---------------- */
         .footer {
@@ -228,6 +225,7 @@
 
         <div class="products-grid">
 
+            <!-- PRODUCT 1 -->
             <div class="product-card">
                 <img src="product1.jpg" class="product-image">
                 <h3 class="product-title">مدل خودرو کلاسیک</h3>
@@ -238,6 +236,12 @@
                     توضیحات : چاپ سه‌بعدی با کیفیت بالا
                 </div>
 
+                <div class="color-options">
+                    <div class="color-circle" style="background:#ffffff" onclick="selectColor(this, 'سفید')"></div>
+                    <div class="color-circle" style="background:#bfbfbf" onclick="selectColor(this, 'طوسی')"></div>
+                    <div class="color-circle" style="background:#000000" onclick="selectColor(this, 'مشکی')"></div>
+                </div>
+
                 <p class="product-price">۲۵۰,۰۰۰ تومان</p>
 
                 <button class="btn" onclick="addToCart({name:'مدل خودرو کلاسیک', price:250000, image:'product1.jpg'})">
@@ -245,6 +249,7 @@
                 </button>
             </div>
 
+            <!-- PRODUCT 2 -->
             <div class="product-card">
                 <img src="product2.jpg" class="product-image">
                 <h3 class="product-title">مجسمه مکانیکی</h3>
@@ -255,6 +260,12 @@
                     توضیحات : مناسب برای دکور صنعتی
                 </div>
 
+                <div class="color-options">
+                    <div class="color-circle" style="background:#ffffff" onclick="selectColor(this, 'سفید')"></div>
+                    <div class="color-circle" style="background:#bfbfbf" onclick="selectColor(this, 'طوسی')"></div>
+                    <div class="color-circle" style="background:#000000" onclick="selectColor(this, 'مشکی')"></div>
+                </div>
+
                 <p class="product-price">۳۲۰,۰۰۰ تومان</p>
 
                 <button class="btn" onclick="addToCart({name:'مجسمه مکانیکی', price:320000, image:'product2.jpg'})">
@@ -262,6 +273,7 @@
                 </button>
             </div>
 
+            <!-- PRODUCT 3 -->
             <div class="product-card">
                 <img src="product3.jpg" class="product-image">
                 <h3 class="product-title">قطعه سفارشی خودرو</h3>
@@ -270,6 +282,12 @@
                     نوع مواد : TPU<br>
                     ابعاد محصول : 10×5×3 سانتی‌متر<br>
                     توضیحات : انعطاف‌پذیر و مقاوم
+                </div>
+
+                <div class="color-options">
+                    <div class="color-circle" style="background:#ffffff" onclick="selectColor(this, 'سفید')"></div>
+                    <div class="color-circle" style="background:#bfbfbf" onclick="selectColor(this, 'طوسی')"></div>
+                    <div class="color-circle" style="background:#000000" onclick="selectColor(this, 'مشکی')"></div>
                 </div>
 
                 <p class="product-price">۴۵۰,۰۰۰ تومان</p>
@@ -287,6 +305,34 @@
         © 2026 Layer‑X — طراحی و اجرای مدل‌های سه‌بعدی
     </footer>
 
-    <script src="script.js"></script>
+    <!-- SCRIPT -->
+    <script>
+        let selectedColor = null;
+
+        function selectColor(el, color) {
+            selectedColor = color;
+
+            const all = el.parentElement.querySelectorAll('.color-circle');
+            all.forEach(c => c.classList.remove('selected'));
+
+            el.classList.add('selected');
+        }
+
+        function addToCart(product) {
+            if (!selectedColor) {
+                alert("لطفاً رنگ مورد نظر را انتخاب کنید");
+                return;
+            }
+
+            product.color = selectedColor;
+
+            let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            alert("محصول با موفقیت به سبد خرید اضافه شد");
+        }
+    </script>
+
 </body>
 </html>
