@@ -29,7 +29,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 16px 32px;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid rgba(17,17,17,0.15);
             background: #ffffff;
             position: sticky;
             top: 0;
@@ -43,15 +43,21 @@
         }
 
         .logo {
-            height: 40px;
+            height: 42px;
         }
 
-        .title {
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
             font-size: 20px;
             margin: 0;
+            font-weight: 700;
         }
 
-        .subtitle {
+        .brand-sub {
             font-size: 13px;
             color: #6b7280;
             margin: 0;
@@ -59,7 +65,7 @@
 
         .nav {
             display: flex;
-            gap: 16px;
+            gap: 20px;
         }
 
         .nav a {
@@ -67,30 +73,31 @@
             color: #111111;
             font-size: 14px;
             padding: 6px 10px;
-            border-radius: 999px;
+            border-radius: 8px;
             transition: 0.2s;
         }
 
         .nav a:hover {
-            background: #f3f4f6;
+            background: rgba(17,17,17,0.08);
         }
 
         /* Main */
         .main {
             max-width: 1100px;
-            margin: 24px auto 40px;
+            margin: 32px auto 80px;
             padding: 0 16px;
         }
 
         .section-title {
-            font-size: 18px;
-            margin-bottom: 16px;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 700;
         }
 
         .products-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 20px;
+            gap: 24px;
         }
 
         @media (max-width: 768px) {
@@ -101,31 +108,32 @@
 
         .product-card {
             background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 12px;
+            border: 1px solid rgba(17,17,17,0.15);
+            border-radius: 14px;
+            padding: 16px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-            transition: 0.2s;
+            transition: 0.25s;
             display: flex;
             flex-direction: column;
-            height: 100%;
         }
 
         .product-card:hover {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+            transform: translateY(-6px);
         }
 
         .product-image {
             width: 100%;
-            border-radius: 10px;
-            object-fit: cover;
-            margin-bottom: 10px;
+            height: 220px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 12px;
         }
 
         .product-title {
-            font-size: 15px;
+            font-size: 16px;
             margin: 4px 0;
+            font-weight: 600;
         }
 
         .product-desc {
@@ -136,23 +144,17 @@
 
         .product-price {
             font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .product-actions {
-            margin-top: auto;
-            display: flex;
-            justify-content: flex-start;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
 
         .btn {
             border: none;
             outline: none;
             cursor: pointer;
-            padding: 8px 14px;
-            border-radius: 999px;
-            font-size: 13px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 14px;
             font-weight: 600;
             background: #111111;
             color: #ffffff;
@@ -165,12 +167,13 @@
 
         /* Footer */
         .footer {
-            border-top: 1px solid #e5e7eb;
-            padding: 16px;
+            border-top: 1px solid rgba(17,17,17,0.15);
+            padding: 20px;
             text-align: center;
-            font-size: 12px;
+            font-size: 13px;
             color: #6b7280;
             background: #ffffff;
+            margin-top: 80px;
         }
     </style>
 </head>
@@ -179,20 +182,20 @@
 
     <!-- Header -->
     <header class="header">
-        <div class="header-left">
-            <img src="logo.png" alt="Layer-X Logo" class="logo">
-            <div>
-                <h1 class="title">Layer‑X</h1>
-                <p class="subtitle">طراحی و اجرای مدل‌های سه‌بعدی</p>
-            </div>
-        </div>
-
         <nav class="nav">
             <a href="index.html">محصولات</a>
             <a href="contact.html">تماس با ما</a>
             <a href="policy.html">قوانین</a>
             <a href="cart.html">سبد خرید</a>
         </nav>
+
+        <div class="header-left">
+            <img src="logo.png" alt="Layer-X Logo" class="logo">
+            <div class="brand-text">
+                <h1 class="brand-title">Layer‑X</h1>
+                <p class="brand-sub">طراحی و اجرای مدل‌های سه‌بعدی</p>
+            </div>
+        </div>
     </header>
 
     <!-- Main -->
@@ -202,39 +205,33 @@
         <div class="products-grid">
 
             <div class="product-card">
-                <img src="product1.jpg" alt="محصول ۱" class="product-image">
+                <img src="product1.jpg" class="product-image">
                 <h3 class="product-title">مدل خودرو کلاسیک</h3>
                 <p class="product-desc">چاپ سه‌بعدی با فیلامنت PLA، مناسب برای دکور و هدیه.</p>
-                <p class="product-price">قیمت: ۲۵۰,۰۰۰ تومان</p>
-                <div class="product-actions">
-                    <button class="btn" onclick="addToCart({name: 'مدل خودرو کلاسیک', price: 250000, image: 'product1.jpg'})">
-                        افزودن به سبد خرید
-                    </button>
-                </div>
+                <p class="product-price">۲۵۰,۰۰۰ تومان</p>
+                <button class="btn" onclick="addToCart({name:'مدل خودرو کلاسیک', price:250000, image:'product1.jpg'})">
+                    افزودن به سبد خرید
+                </button>
             </div>
 
             <div class="product-card">
-                <img src="product2.jpg" alt="محصول ۲" class="product-image">
+                <img src="product2.jpg" class="product-image">
                 <h3 class="product-title">مجسمه مکانیکی</h3>
                 <p class="product-desc">چاپ دقیق با PETG، مناسب برای فضای صنعتی و مدرن.</p>
-                <p class="product-price">قیمت: ۳۲۰,۰۰۰ تومان</p>
-                <div class="product-actions">
-                    <button class="btn" onclick="addToCart({name: 'مجسمه مکانیکی', price: 320000, image: 'product2.jpg'})">
-                        افزودن به سبد خرید
-                    </button>
-                </div>
+                <p class="product-price">۳۲۰,۰۰۰ تومان</p>
+                <button class="btn" onclick="addToCart({name:'مجسمه مکانیکی', price:320000, image:'product2.jpg'})">
+                    افزودن به سبد خرید
+                </button>
             </div>
 
             <div class="product-card">
-                <img src="product3.jpg" alt="محصول ۳" class="product-image">
+                <img src="product3.jpg" class="product-image">
                 <h3 class="product-title">قطعه سفارشی خودرو</h3>
                 <p class="product-desc">طراحی اختصاصی و چاپ با TPU انعطاف‌پذیر.</p>
-                <p class="product-price">قیمت: ۴۵۰,۰۰۰ تومان</p>
-                <div class="product-actions">
-                    <button class="btn" onclick="addToCart({name: 'قطعه سفارشی خودرو', price: 450000, image: 'product3.jpg'})">
-                        افزودن به سبد خرید
-                    </button>
-                </div>
+                <p class="product-price">۴۵۰,۰۰۰ تومان</p>
+                <button class="btn" onclick="addToCart({name:'قطعه سفارشی خودرو', price:450000, image:'product3.jpg'})">
+                    افزودن به سبد خرید
+                </button>
             </div>
 
         </div>
