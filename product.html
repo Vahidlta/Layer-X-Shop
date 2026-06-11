@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جزئیات محصول | Layer‑X</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <img src="logo.jpg" alt="Layer-X Logo" class="logo">
+        <h2 class="subtitle">طراحی و اجرای مدل‌های سه‌بعدی</h2>
+
+        <nav class="nav">
+            <a href="index.html">صفحه اصلی</a>
+            <a href="products.html">محصولات</a>
+            <a href="cart.html">سبد خرید</a>
+        </nav>
+    </header>
+
+    <!-- Product Details -->
+    <section class="featured">
+        <div class="product-details">
+
+            <img src="product1.jpg" class="product-image">
+
+            <div class="product-info">
+                <h2>نام محصول</h2>
+                <p class="price">قیمت: 250,000 تومان</p>
+
+                <p>
+                    توضیحات کامل محصول در این قسمت قرار می‌گیرد.  
+                    این متن شامل ویژگی‌ها، جنس، ابعاد، کاربرد و هر اطلاعات مهم دیگر است.
+                </p>
+
+                <h3>مشخصات فنی</h3>
+                <ul class="specs">
+                    <li>جنس: PLA</li>
+                    <li>ابعاد: 15 × 8 × 6 سانتی‌متر</li>
+                    <li>زمان چاپ: 6 ساعت</li>
+                    <li>رنگ: مشکی مات</li>
+                </ul>
+
+                <button class="btn" onclick="addToCart()">افزودن به سبد خرید</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="logo.jpg" class="footer-logo">
+        <p>© 2026 Layer‑X — طراحی و اجرای مدل‌های سه‌بعدی</p>
+    </footer>
+
+    <script>
+        function addToCart() {
+            alert("محصول به سبد خرید اضافه شد (فعلاً نسخه نمایشی)");
+        }
+    </script>
+
+</body>
+</html>
