@@ -217,3 +217,22 @@ body {
     color: #ff6a00;
     font-weight: 700;
 }
+.policy-box {
+    background: #1a1a1a;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: right;
+}
+
+.policy-box h3 {
+    color: #ff6a00;
+    margin-top: 25px;
+}
+
+.policy-box p {
+    color: #ccc;
+    line-height: 1.9;
+}
