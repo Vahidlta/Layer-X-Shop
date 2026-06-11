@@ -23,27 +23,29 @@
             color: #111111;
         }
 
-        /* Header */
+        /* ---------------- HEADER ---------------- */
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 32px;
-            border-bottom: 1px solid rgba(17,17,17,0.15);
+            padding: 14px 28px;
+            border-bottom: 1px solid rgba(17,17,17,0.12);
             background: #ffffff;
             position: sticky;
             top: 0;
             z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .logo {
             height: 42px;
+            transition: 0.2s;
         }
 
         .brand-text {
@@ -52,20 +54,20 @@
         }
 
         .brand-title {
-            font-size: 20px;
+            font-size: 18px;
             margin: 0;
             font-weight: 700;
         }
 
         .brand-sub {
-            font-size: 13px;
+            font-size: 12px;
             color: #6b7280;
             margin: 0;
         }
 
         .nav {
             display: flex;
-            gap: 20px;
+            gap: 18px;
         }
 
         .nav a {
@@ -81,17 +83,45 @@
             background: rgba(17,17,17,0.08);
         }
 
-        /* Main */
+        /* MOBILE HEADER */
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 16px;
+            }
+
+            .logo {
+                height: 30px;
+            }
+
+            .brand-title {
+                font-size: 16px;
+            }
+
+            .brand-sub {
+                font-size: 11px;
+            }
+
+            .nav {
+                gap: 10px;
+            }
+
+            .nav a {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+        }
+
+        /* ---------------- MAIN ---------------- */
         .main {
             max-width: 1100px;
-            margin: 32px auto 120px; /* فاصله زیادتر برای فوتر */
+            margin: 32px auto 140px; /* فاصله زیادتر برای فوتر */
             padding: 0 16px;
         }
 
         .products-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 28px; /* کارت‌ها پهن‌تر */
+            gap: 28px;
         }
 
         @media (max-width: 768px) {
@@ -160,7 +190,7 @@
             background: #000000;
         }
 
-        /* Footer */
+        /* ---------------- FOOTER ---------------- */
         .footer {
             border-top: 1px solid rgba(17,17,17,0.15);
             padding: 20px;
@@ -176,6 +206,7 @@
 
     <!-- Header -->
     <header class="header">
+
         <nav class="nav">
             <a href="contact.html">تماس با ما</a>
             <a href="policy.html">قوانین</a>
@@ -189,6 +220,7 @@
                 <p class="brand-sub">طراحی و اجرای مدل‌های سه‌بعدی</p>
             </div>
         </div>
+
     </header>
 
     <!-- Main -->
