@@ -170,10 +170,23 @@ let selectedColor = null;
 
 function selectColor(el, color) {
     selectedColor = color;
+
     const all = el.parentElement.querySelectorAll('.color-circle');
-    all.forEach(c => c.classList.remove('selected'));
+    all.forEach(c => {
+        c.classList.remove('selected');
+        c.style.borderRadius = "50%";   // همه دوباره دایره می‌شن
+        c.style.transform = "scale(1)"; // اندازه عادی
+    });
+
     el.classList.add('selected');
+
+    // تبدیل دایره به مربع
+    el.style.borderRadius = "6px";
+
+    // کمی بزرگ‌تر برای تاکید
+    el.style.transform = "scale(1.25)";
 }
+
 
 function addToCart(product) {
     if (!selectedColor) return alert("لطفاً رنگ را انتخاب کنید");
