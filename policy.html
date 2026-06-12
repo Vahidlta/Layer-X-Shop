@@ -5,158 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قوانین و شرایط | Layer‑X</title>
 
-    <style>
-        @font-face {
-            font-family: 'Vazir';
-            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font/dist/Vazir.woff2') format('woff2');
-        }
-
-        * { box-sizing: border-box; }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Vazir', sans-serif;
-            background: #ffffff;
-            color: #111111;
-        }
-
-        /* HEADER */
-        .header {
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:14px 28px;
-            border-bottom:1px solid #ddd;
-            background:#fff;
-            position:sticky;
-            top:0;
-            z-index:10;
-        }
-
-        .header-left {
-            display:flex;
-            align-items:center;
-            gap:10px;
-        }
-
-        .logo { height:42px; transition:0.2s; }
-
-        .nav {
-            display:flex;
-            gap:18px;
-        }
-        .nav a {
-            text-decoration:none;
-            color:#111;
-            font-size:14px;
-        }
-
-        /* MAIN */
-        .featured {
-            max-width:900px;
-            margin:40px auto;
-            padding:0 20px;
-        }
-
-        .policy-box {
-            background:#fafafa;
-            border:1px solid #ddd;
-            border-radius:14px;
-            padding:25px;
-            margin-top:20px;
-            line-height:1.9;
-        }
-
-        .policy-box h3 {
-            margin-top:25px;
-            color:#111;
-            font-size:16px;
-        }
-
-        /* FOOTER */
-        .footer {
-            text-align:center;
-            padding:20px;
-            color:#666;
-            border-top:1px solid #ddd;
-            margin-top:40px;
-        }
-
-        /* MOBILE */
-        @media (max-width:768px) {
-            .logo { height:32px; }
-            .nav { gap:10px; }
-            .nav a { font-size:12px; }
-            .header-left { gap:6px; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header class="header">
+<header class="header">
 
-        <div class="header-left">
-            <img src="logo.png" class="logo">
-            <div>
-                <h1 style="margin:0; font-size:18px; font-weight:700;">Layer‑X</h1>
-                <p style="margin:0; font-size:12px; color:#6b7280;">طراحی و اجرای مدل‌های سه‌بعدی</p>
-            </div>
+    <div class="header-left">
+        <img src="logo.png" class="logo">
+        <div>
+            <h1 class="brand-title">Layer‑X</h1>
+            <p class="brand-sub">طراحی و اجرای مدل‌های سه‌بعدی</p>
         </div>
+    </div>
 
-        <nav class="nav">
-            <a href="index.html">صفحه اصلی</a>
-            <a href="contact.html">تماس با ما</a>
-            <a href="cart.html">سبد خرید</a>
-        </nav>
+    <nav class="nav">
+        <a href="index.html">صفحه اصلی</a>
+        <a href="contact.html">تماس با ما</a>
+        <a href="cart.html">سبد خرید</a>
+    </nav>
 
-    </header>
+</header>
 
-    <!-- Policy Section -->
-    <section class="featured">
-        <h2>قوانین و شرایط فروشگاه Layer‑X</h2>
+<section class="featured policy-page">
+    <h2>قوانین و شرایط فروشگاه Layer‑X</h2>
 
-        <div class="policy-box">
+    <div class="policy-box">
 
-            <h3>۱. شرایط ثبت سفارش</h3>
-            <p>
-                ثبت سفارش در فروشگاه Layer‑X به معنای پذیرش کامل قوانین زیر است.
-                لطفاً قبل از ثبت سفارش، این صفحه را با دقت مطالعه کنید.
-            </p>
+        <h3>۱. شرایط ثبت سفارش</h3>
+        <p>
+            ثبت سفارش در فروشگاه Layer‑X به معنای پذیرش کامل قوانین زیر است.
+            لطفاً قبل از ثبت سفارش، این صفحه را با دقت مطالعه کنید.
+        </p>
 
-            <h3>۲. زمان آماده‌سازی و ارسال</h3>
-            <p>
-                محصولات چاپ سه‌بعدی معمولاً بین ۱ تا ۳ روز کاری زمان آماده‌سازی نیاز دارند.
-                ارسال از طریق پست یا تیپاکس انجام می‌شود.
-            </p>
+        <h3>۲. زمان آماده‌سازی و ارسال</h3>
+        <p>
+            محصولات چاپ سه‌بعدی معمولاً بین ۱ تا ۳ روز کاری زمان آماده‌سازی نیاز دارند.
+            ارسال فقط از طریق پست انجام می‌شود.
+        </p>
 
-            <h3>۳. قوانین پرداخت</h3>
-            <p>
-                پرداخت سفارش‌ها از طریق درگاه امن زرین‌پال انجام خواهد شد.
-                در صورت بروز مشکل در پرداخت، مبلغ طی ۷۲ ساعت کاری به حساب مشتری بازگردانده می‌شود.
-            </p>
+        <h3>۳. قوانین پرداخت</h3>
+        <p>
+            پرداخت سفارش‌ها از طریق درگاه امن زرین‌پال انجام خواهد شد.
+            در صورت بروز مشکل در پرداخت، مبلغ طی ۷۲ ساعت کاری به حساب مشتری بازگردانده می‌شود.
+        </p>
 
-            <h3>۴. قوانین مرجوعی</h3>
-            <p>
-                به دلیل ماهیت چاپ سه‌بعدی و سفارشی بودن محصولات،
-                امکان مرجوعی تنها در صورت آسیب‌دیدگی بسته‌بندی در زمان تحویل وجود دارد.
-            </p>
+        <h3>۴. قوانین مرجوعی</h3>
+        <p>
+            به دلیل ماهیت چاپ سه‌بعدی و سفارشی بودن محصولات،
+            امکان مرجوعی تنها در صورت آسیب‌دیدگی بسته‌بندی در زمان تحویل وجود دارد.
+        </p>
 
-            <h3>۵. پشتیبانی</h3>
-            <p>
-                برای هرگونه سؤال یا مشکل، می‌توانید از طریق صفحه تماس با ما پیام ارسال کنید.
-                پاسخ‌گویی معمولاً بین ۱ تا ۱۲ ساعت انجام می‌شود.
-            </p>
+        <h3>۵. پشتیبانی</h3>
+        <p>
+            برای هرگونه سؤال یا مشکل، می‌توانید از طریق صفحه تماس با ما پیام ارسال کنید.
+            پاسخ‌گویی معمولاً بین ۱ تا ۱۲ ساعت انجام می‌شود.
+        </p>
 
-        </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        © 2026 Layer‑X
-    </footer>
+<footer class="footer">
+    © 2026 Layer‑X
+</footer>
 
 </body>
 </html>
