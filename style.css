@@ -53,11 +53,11 @@ body {
     position:relative;
     display:flex;
     align-items:center;
-    gap:6px; /* فاصله بین متن و عدد */
+    gap:6px;
 }
 
 .cart-badge {
-    position:static; /* دیگر absolute نیست */
+    position:static;
     background:#ff4444;
     color:#fff;
     padding:2px 6px;
@@ -66,12 +66,11 @@ body {
     display:none;
 }
 
-
 /* MAIN WRAPPER */
 .featured, .main {
     max-width:1100px;
-    margin:60px auto 200px; /* فاصله از بالا و پایین */
-    padding:0 20px; /* فاصله از چپ و راست */
+    margin:60px auto 200px;
+    padding:0 20px;
 }
 
 /* INDEX PAGE */
@@ -79,7 +78,7 @@ body {
     display:grid;
     grid-template-columns:repeat(3, minmax(0, 1fr));
     gap:24px;
-    padding:20px 10px; /* فاصله از چپ و راست */
+    padding:20px 10px;
 }
 
 .product-card {
@@ -290,6 +289,24 @@ body {
     resize:none;
 }
 
+/* 🔥 ردیف ایمیل + ارسال کد + کد تأیید */
+.email-row {
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.email-row input {
+    flex:1;
+}
+
+#sendCodeBtn {
+    padding:8px 12px;
+    font-size:12px;
+    border-radius:8px;
+    white-space:nowrap;
+}
+
 /* FOOTER */
 .footer {
     text-align:center;
@@ -300,6 +317,16 @@ body {
 
 /* MOBILE */
 @media (max-width:768px) {
+
+    .email-row {
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    #sendCodeBtn {
+        width:100%;
+    }
+
     .logo { height:32px; }
     .nav { gap:10px; }
     .nav a { font-size:12px; }
