@@ -2,11 +2,9 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>فروشگاه Layer‑X</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layer‑X | فروشگاه چاپ سه‌بعدی</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 
 <body>
@@ -22,21 +20,29 @@
     </div>
 
     <nav class="nav">
+        <a href="index.html">صفحه اصلی</a>
         <a href="contact.html">تماس با ما</a>
         <a href="policy.html">قوانین</a>
-        <a href="cart.html" class="cart-link">سبد خرید<span id="cart-count" class="cart-badge">0</span></a>
+
+        <a href="cart.html" class="cart-link">
+            سبد خرید
+            <span id="cart-count" class="cart-badge">0</span>
+        </a>
     </nav>
 
 </header>
 
-<main class="main">
-    <div class="products-grid" id="products"></div>
-</main>
+<section class="featured main">
+    <h2>محصولات</h2>
+
+    <div id="products" class="products-grid"></div>
+</section>
 
 <footer class="footer">
     © 2026 Layer‑X
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="script.js"></script>
 
 </body>
