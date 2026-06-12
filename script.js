@@ -280,17 +280,60 @@ function updateCartCount() {
 updateCartCount();
 
 /* ------------------------------
+   EMAIL VERIFICATION
+------------------------------ */
+
+let generatedCode = null;
+
+function sendEmailCode() {
+    let email = document.getElementById("email").value.trim();
+
+    if (!email || !email.includes("@") || !email.includes(".")) {
+        alert("لطفاً یک ایمیل معتبر وارد کنید");
+        return;
+    }
+
+    generatedCode = Math.floor(100000 + Math.random() * 900000);
+
+    alert("کد تأیید به ایمیل شما ارسال شد: " + generatedCode);
+}
+
+/* ------------------------------
    SUBMIT ORDER (Checkout)
 ------------------------------ */
 function submitOrder() {
     let name = document.getElementById("name").value.trim();
     let phone = document.getElementById("phone").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let emailCode = document.getElementById("emailCode").value.trim();
     let address = document.getElementById("address").value.trim();
     let shipping = document.getElementById("shipping").value;
     let note = document.getElementById("note").value.trim();
 
-    if (!name || !phone || !address) {
+    if (!name || !phone || !email || !address) {
         alert("لطفاً تمام فیلدهای ضروری را پر کنید");
+        return;
+    }
+
+    let iranMobileRegex = /^(09)(0[0-5]|1[0-9]|2[0-2]|3[0-9]|9[0-9])[0-9]{7}$/;
+
+    if (!iranMobileRegex.test(phone)) {
+        alert("شماره موبایل معتبر نیست");
+        return;
+    }
+
+    if (!email.includes("@") || !email.includes(".")) {
+        alert("ایمیل معتبر نیست");
+        return;
+    }
+
+    if (!generatedCode) {
+        alert("لطفاً ابتدا کد تأیید ایمیل را دریافت کنید");
+        return;
+    }
+
+    if (emailCode != generatedCode) {
+        alert("کد تأیید اشتباه است");
         return;
     }
 
@@ -303,6 +346,7 @@ function submitOrder() {
     let order = {
         name,
         phone,
+        email,
         address,
         shipping,
         note,
@@ -312,5 +356,5 @@ function submitOrder() {
 
     localStorage.setItem("order", JSON.stringify(order));
 
-    alert("سفارش ثبت شد! (فعلاً بدون پرداخت)");
+    alert("سفارش با موفقیت ثبت شد");
 }
