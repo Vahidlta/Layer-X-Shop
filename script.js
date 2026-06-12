@@ -1,18 +1,26 @@
-const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSrjXH-PDT3MeRA9UGsaJBQwoRfErVtwjifuF7QtFvDcLfwxIki-A7F2FjAD_V5OEDrJSMUrj03aUBT/pub?gid=0&single=true&output=csv";
+/* ------------------------------
+   تنظیمات CSV
+------------------------------ */
+const CSV_URL =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSrjXH-PDT3MeRA9UGsaJBQwoRfErVtwjifuF7QtFvDcLfwxIki-A7F2FjAD_V5OEDrJSMUrj03aUBT/pub?gid=0&single=true&output=csv";
 
 let selectedColor = null;
 
-/* --- انتخاب رنگ --- */
+/* ------------------------------
+   انتخاب رنگ
+------------------------------ */
 function selectColor(el, color) {
     selectedColor = color;
 
-    const all = el.parentElement.querySelectorAll('.color-circle');
-    all.forEach(c => c.classList.remove("selected"));
+    const all = el.parentElement.querySelectorAll(".color-circle");
+    all.forEach((c) => c.classList.remove("selected"));
 
     el.classList.add("selected");
 }
 
-/* --- تغییر تعداد --- */
+/* ------------------------------
+   تغییر تعداد
+------------------------------ */
 function changeQty(btn, amount) {
     const box = btn.parentElement;
     const valueEl = box.querySelector(".qty-value");
@@ -24,7 +32,9 @@ function changeQty(btn, amount) {
     valueEl.innerText = qty;
 }
 
-/* --- افزودن به سبد خرید --- */
+/* ------------------------------
+   افزودن به سبد خرید
+------------------------------ */
 function addToCart(product, qty) {
     if (!selectedColor) return alert("لطفاً رنگ را انتخاب کنید");
 
@@ -38,7 +48,9 @@ function addToCart(product, qty) {
     alert("به سبد خرید اضافه شد");
 }
 
-/* --- رنگ‌ها --- */
+/* ------------------------------
+   رنگ‌ها
+------------------------------ */
 function getColorCode(name) {
     const colors = {
         "سفید": "#ffffff",
@@ -50,14 +62,18 @@ function getColorCode(name) {
         "زرد": "#ffcc00",
         "نارنجی": "#ff8800",
         "طلایی": "#d4af37",
-        "نقره‌ای": "#c0c0c0"
+        "نقره‌ای": "#c0c0c0",
     };
     return colors[name] || "#000";
 }
 
-/* --- ریسپانسیو --- */
+/* ------------------------------
+   ریسپانسیو
+------------------------------ */
 function applyMobileLayout() {
     const grid = document.querySelector(".products-grid");
+    if (!grid) return; // اگر در cart.html بودیم، grid وجود ندارد
+
     const logo = document.querySelector(".logo");
     const nav = document.querySelector(".nav");
     const headerLeft = document.querySelector(".header-left");
@@ -80,41 +96,53 @@ function applyMobileLayout() {
 window.addEventListener("load", applyMobileLayout);
 window.addEventListener("resize", applyMobileLayout);
 
-/* --- لود CSV --- */
-Papa.parse(CSV_URL, {
-    download: true,
-    header: true,
-    complete: function(result) {
-        renderProducts(result.data);
-    }
-});
+/* ------------------------------
+   لود CSV فقط در index.html
+------------------------------ */
+if (window.location.pathname.includes("index.html")) {
+    Papa.parse(CSV_URL, {
+        download: true,
+        header: true,
+        complete: function (result) {
+            renderProducts(result.data);
+        },
+    });
+}
 
-/* --- ساخت کارت‌ها --- */
+/* ------------------------------
+   ساخت کارت‌های محصول (index)
+------------------------------ */
 function renderProducts(products) {
+    const container = document.getElementById("products");
+    if (!container) return;
 
     products.sort((a, b) => Number(b.id) - Number(a.id));
 
-    const container = document.getElementById("products");
     container.innerHTML = "";
 
-    products.forEach(p => {
+    products.forEach((p) => {
         if (!p.name) return;
 
         container.innerHTML += `
             <div class="product-card">
 
-                <div class="status ${p.stock === 'موجود' ? 'in-stock' : 'out-stock'}">
+                <div class="status ${p.stock === "موجود" ? "in-stock" : "out-stock"}">
                     ${p.stock}
                 </div>
 
                 <img src="${p.image}" class="product-image">
 
                 <div class="color-options">
-                    ${p.colors.split(",").map(c => `
-                        <div class="color-circle ${c === 'سفید' ? 'white' : ''}"
+                    ${p.colors
+                        .split(",")
+                        .map(
+                            (c) => `
+                        <div class="color-circle ${c === "سفید" ? "white" : ""}"
                              style="background:${getColorCode(c)}"
                              onclick="selectColor(this, '${c}')"></div>
-                    `).join("")}
+                    `
+                        )
+                        .join("")}
                 </div>
 
                 <h3 class="product-title">${p.name}</h3>
@@ -130,7 +158,9 @@ function renderProducts(products) {
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
 
                     <button class="btn"
-                        onclick='addToCart(${JSON.stringify(p)}, this.parentElement.querySelector(".qty-value").innerText)'>
+                        onclick='addToCart(${JSON.stringify(
+                            p
+                        )}, this.parentElement.querySelector(".qty-value").innerText)'>
                         افزودن به سبد خرید
                     </button>
 
@@ -151,4 +181,65 @@ function renderProducts(products) {
     });
 
     applyMobileLayout();
+}
+
+/* ------------------------------
+   CART FUNCTIONS
+------------------------------ */
+
+function loadCart() {
+    let cart = localStorage.getItem("cart");
+    return cart ? JSON.parse(cart) : [];
+}
+
+function saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function removeItem(index) {
+    let cart = loadCart();
+    cart.splice(index, 1);
+    saveCart(cart);
+    displayCart();
+}
+
+function displayCart() {
+    const container = document.getElementById("cart-items");
+    if (!container) return; // یعنی در cart.html نیستیم
+
+    let cart = loadCart();
+    let totalPrice = 0;
+
+    if (cart.length === 0) {
+        container.innerHTML = "<p>سبد خرید شما خالی است.</p>";
+        document.getElementById("total-price").innerText = 0;
+        return;
+    }
+
+    container.innerHTML = "";
+
+    cart.forEach((item, index) => {
+        totalPrice += item.price * item.qty;
+
+        container.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.image}" class="cart-img">
+                <div class="cart-info">
+                    <h3>${item.name}</h3>
+                    <p>${item.price.toLocaleString()} تومان</p>
+                    <p>تعداد: ${item.qty}</p>
+                    <p>رنگ: ${item.color}</p>
+                </div>
+                <button class="remove-btn" onclick="removeItem(${index})">حذف</button>
+            </div>
+        `;
+    });
+
+    document.getElementById("total-price").innerText =
+        totalPrice.toLocaleString();
+}
+
+/* اجرای سبد خرید فقط در cart.html */
+if (window.location.pathname.includes("cart.html")) {
+    displayCart();
 }
