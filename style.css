@@ -49,6 +49,8 @@ body {
 }
 
 /* CART BADGE */
+.cart-link { position:relative; }
+
 .cart-badge {
     position:absolute;
     top:-8px;
@@ -61,11 +63,11 @@ body {
     display:none;
 }
 
-/* MAIN */
-.featured {
-    max-width:900px;
-    margin:60px auto 200px;
-    padding:0 20px;
+/* MAIN WRAPPER */
+.featured, .main {
+    max-width:1100px;
+    margin:60px auto 200px; /* فاصله از بالا و پایین */
+    padding:0 20px; /* فاصله از چپ و راست */
 }
 
 /* INDEX PAGE */
@@ -73,16 +75,16 @@ body {
     display:grid;
     grid-template-columns:repeat(3, minmax(0, 1fr));
     gap:24px;
-    padding:0 10px;
+    padding:20px 10px; /* فاصله از چپ و راست */
 }
 
 .product-card {
+    background:#fff;
     border:1px solid #ddd;
     border-radius:14px;
     padding:18px;
     box-shadow:0 4px 10px rgba(0,0,0,0.04);
     position:relative;
-    background:#fff;
 }
 
 .product-image {
