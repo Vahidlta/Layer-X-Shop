@@ -3,58 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ثبت اطلاعات | Layer‑X</title>
+    <title>تکمیل سفارش | Layer‑X</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header class="header">
-        <img src="logo.png" alt="Layer-X Logo" class="logo">
-        <h2 class="subtitle">طراحی و اجرای مدل‌های سه‌بعدی</h2>
+<header class="header">
 
-        <nav class="nav">
-            <a href="index.html">صفحه اصلی</a>
-            <a href="products.html">محصولات</a>
-            <a href="cart.html">سبد خرید</a>
-        </nav>
-    </header>
+    <div class="header-left">
+        <img src="logo.png" class="logo">
+        <div>
+            <h1 class="brand-title">Layer‑X</h1>
+            <p class="brand-sub">طراحی و اجرای مدل‌های سه‌بعدی</p>
+        </div>
+    </div>
 
-    <!-- Checkout Form -->
-    <section class="featured">
-        <h2>ثبت اطلاعات مشتری</h2>
+    <nav class="nav">
+        <a href="index.html">صفحه اصلی</a>
+        <a href="contact.html">تماس با ما</a>
+        <a href="policy.html">قوانین</a>
+        <a href="cart.html">سبد خرید</a>
+    </nav>
+
+</header>
+
+<section class="featured">
+    <h2>تکمیل اطلاعات سفارش</h2>
+
+    <div class="checkout-box">
 
         <form class="checkout-form">
 
             <label>نام و نام خانوادگی</label>
-            <input type="text" placeholder="مثال: وحید احمدی" required>
+            <input type="text" id="name" placeholder="مثال: وحید محمدی" required>
 
             <label>شماره موبایل</label>
-            <input type="tel" placeholder="مثال: 0912xxxxxxx" required>
+            <input type="text" id="phone" placeholder="مثال: 0912xxxxxxx" required>
 
             <label>آدرس کامل</label>
-            <textarea placeholder="آدرس دقیق برای ارسال سفارش..." required></textarea>
+            <textarea id="address" placeholder="آدرس دقیق پستی..." required></textarea>
 
             <label>روش ارسال</label>
-            <select required>
-                <option value="post">پست پیشتاز</option>
-                <option value="tipax">تیپاکس</option>
-                <option value="motor">پیک (فقط تهران)</option>
+            <select id="shipping">
+                <option value="پست پیشتاز">پست پیشتاز</option>
+                <option value="پست سفارشی">پست سفارشی</option>
             </select>
 
-            <label>یادداشت (اختیاری)</label>
-            <textarea placeholder="اگر توضیح خاصی دارید اینجا بنویسید..."></textarea>
+            <label>یادداشت سفارش (اختیاری)</label>
+            <textarea id="note" placeholder="اگر توضیحی دارید اینجا بنویسید..."></textarea>
 
-            <button class="btn" type="submit">ثبت سفارش</button>
+            <button type="button" class="btn" onclick="submitOrder()">ثبت سفارش</button>
+
         </form>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <img src="logo.png" class="footer-logo">
-        <p>© 2026 Layer‑X — طراحی و اجرای مدل‌های سه‌بعدی</p>
-    </footer>
+    </div>
+</section>
+
+<footer class="footer">
+    © 2026 Layer‑X
+</footer>
+
+<script src="script.js"></script>
 
 </body>
 </html>
