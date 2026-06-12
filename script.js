@@ -2,21 +2,17 @@ const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSrjXH-PDT3MeRA
 
 let selectedColor = null;
 
-/* --- انتخاب رنگ: تبدیل دایره به مربع --- */
+/* --- انتخاب رنگ --- */
 function selectColor(el, color) {
     selectedColor = color;
 
     const all = el.parentElement.querySelectorAll('.color-circle');
-    all.forEach(c => {
-        c.style.borderRadius = "50%";
-        c.style.transform = "scale(1)";
-    });
+    all.forEach(c => c.classList.remove("selected"));
 
-    el.style.borderRadius = "6px";
-    el.style.transform = "scale(1.25)";
+    el.classList.add("selected");
 }
 
-/* --- تغییر تعداد با + و – --- */
+/* --- تغییر تعداد --- */
 function changeQty(btn, amount) {
     const box = btn.parentElement;
     const valueEl = box.querySelector(".qty-value");
@@ -59,7 +55,7 @@ function getColorCode(name) {
     return colors[name] || "#000";
 }
 
-/* --- ریسپانسیو موبایل --- */
+/* --- ریسپانسیو --- */
 function applyMobileLayout() {
     const grid = document.querySelector(".products-grid");
     const logo = document.querySelector(".logo");
@@ -115,7 +111,7 @@ function renderProducts(products) {
 
                 <div class="color-options">
                     ${p.colors.split(",").map(c => `
-                        <div class="color-circle"
+                        <div class="color-circle ${c === 'سفید' ? 'white' : ''}"
                              style="background:${getColorCode(c)}"
                              onclick="selectColor(this, '${c}')"></div>
                     `).join("")}
@@ -140,19 +136,11 @@ function renderProducts(products) {
 
                     <div class="qty-box" style="display:flex; align-items:center; gap:8px;">
 
-                        <button onclick="changeQty(this, -1)"
-                            style="width:24px; height:24px; border-radius:6px; border:none; background:#eee; font-size:16px; cursor:pointer;">
-                            –
-                        </button>
+                        <button onclick="changeQty(this, -1)">–</button>
 
-                        <span class="qty-value" style="min-width:26px; text-align:center; font-size:16px; font-weight:600;">
-                            1
-                        </span>
+                        <span class="qty-value">1</span>
 
-                        <button onclick="changeQty(this, 1)"
-                            style="width:24px; height:24px; border-radius:6px; border:none; background:#eee; font-size:16px; cursor:pointer;">
-                            +
-                        </button>
+                        <button onclick="changeQty(this, 1)">+</button>
 
                     </div>
 
