@@ -24,11 +24,16 @@
         <a href="index.html">صفحه اصلی</a>
         <a href="contact.html">تماس با ما</a>
         <a href="policy.html">قوانین</a>
+
+        <a href="cart.html" class="cart-link">
+            سبد خرید
+            <span id="cart-count" class="cart-badge">0</span>
+        </a>
     </nav>
 
 </header>
 
-<section class="featured">
+<section class="featured main">
     <h2>سبد خرید</h2>
 
     <div id="cart-items" class="cart-box">
@@ -37,7 +42,7 @@
 
     <div class="cart-summary">
         <p>جمع کل: <span id="total-price">0</span> تومان</p>
-        <a href="checkout.html" class="btn">ادامه خرید</a>
+        <a id="checkout-btn" href="checkout.html" class="btn">ادامه خرید</a>
     </div>
 </section>
 
