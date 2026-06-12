@@ -48,14 +48,17 @@
 
             <label>ایمیل و تأیید</label>
             <div class="email-row">
-                <input type="email" id="email" placeholder="example@gmail.com" required>
 
-                <button type="button" class="btn" id="sendCodeBtn" onclick="sendEmailCode()">
-                    ارسال کد
+                <input type="email" id="email" class="email-input" placeholder="example@gmail.com" required>
+
+                <button type="button" class="btn send-btn" id="sendCodeBtn" onclick="sendEmailCode()">
+                ارسال کد
                 </button>
 
-                <input type="text" id="emailCode" placeholder="کد تأیید" required>
+                <input type="text" id="emailCode" class="code-input" placeholder="کد" required>
+
             </div>
+
 
             <label>آدرس کامل</label>
             <textarea id="address" required></textarea>
