@@ -19,13 +19,38 @@
             background: #fff; color: #111;
         }
 
+        /* HEADER */
         .header {
-            display:flex; justify-content:space-between; align-items:center;
-            padding:14px 28px; border-bottom:1px solid #ddd;
-            position:sticky; top:0; background:#fff; z-index:10;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:14px 28px;
+            border-bottom:1px solid #ddd;
+            background:#fff;
+            position:sticky;
+            top:0;
+            z-index:10;
         }
+
+        .header-left {
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
         .logo { height:42px; transition:0.2s; }
 
+        .nav {
+            display:flex;
+            gap:18px;
+        }
+        .nav a {
+            text-decoration:none;
+            color:#111;
+            font-size:14px;
+        }
+
+        /* MAIN */
         .main { max-width:1100px; margin:32px auto 140px; padding:0 16px; }
 
         .products-grid {
@@ -35,8 +60,10 @@
         }
 
         .product-card {
-            border:1px solid #ddd; border-radius:14px;
-            padding:18px; box-shadow:0 4px 10px rgba(0,0,0,0.04);
+            border:1px solid #ddd;
+            border-radius:14px;
+            padding:18px;
+            box-shadow:0 4px 10px rgba(0,0,0,0.04);
             position:relative;
         }
 
@@ -46,7 +73,8 @@
 
         .status {
             position:absolute; top:12px; right:12px;
-            padding:4px 10px; border-radius:8px; font-size:13px; font-weight:600;
+            padding:4px 10px; border-radius:8px;
+            font-size:13px; font-weight:600;
         }
         .in-stock { background:#d1fae5; color:#065f46; }
         .out-stock { background:#fee2e2; color:#991b1b; }
@@ -58,12 +86,20 @@
         }
 
         .btn {
-            padding:10px 16px; border-radius:10px;
-            background:#111; color:#fff; border:none; cursor:pointer;
+            padding:10px 16px;
+            border-radius:10px;
+            background:#111;
+            color:#fff;
+            border:none;
+            cursor:pointer;
+            font-family:'Vazir';
+            font-size:14px;
         }
 
         .footer {
-            text-align:center; padding:20px; color:#666;
+            text-align:center;
+            padding:20px;
+            color:#666;
             border-top:1px solid #ddd;
         }
     </style>
@@ -72,9 +108,21 @@
 <body>
 
 <header class="header">
-    <div></div>
-    <img src="logo.png" class="logo">
-    <div></div>
+
+    <div class="header-left">
+        <img src="logo.png" class="logo">
+        <div>
+            <h1 style="margin:0; font-size:18px; font-weight:700;">Layer‑X</h1>
+            <p style="margin:0; font-size:12px; color:#6b7280;">طراحی و اجرای مدل‌های سه‌بعدی</p>
+        </div>
+    </div>
+
+    <nav class="nav">
+        <a href="contact.html">تماس با ما</a>
+        <a href="policy.html">قوانین</a>
+        <a href="cart.html">سبد خرید</a>
+    </nav>
+
 </header>
 
 <main class="main">
@@ -150,13 +198,21 @@ function getColorCode(name) {
 function applyMobileLayout() {
     const grid = document.querySelector(".products-grid");
     const logo = document.querySelector(".logo");
+    const nav = document.querySelector(".nav");
+    const headerLeft = document.querySelector(".header-left");
 
     if (window.innerWidth <= 768) {
         grid.style.gridTemplateColumns = "1fr";
         logo.style.height = "32px";
+        nav.style.fontSize = "12px";
+        nav.style.gap = "10px";
+        headerLeft.style.gap = "6px";
     } else {
         grid.style.gridTemplateColumns = "repeat(3, 1fr)";
         logo.style.height = "42px";
+        nav.style.fontSize = "14px";
+        nav.style.gap = "18px";
+        headerLeft.style.gap = "10px";
     }
 }
 
@@ -210,34 +266,34 @@ function renderProducts(products) {
 
                 <p class="product-price">${p.price} تومان</p>
 
-<div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
 
-    <button class="btn"
-        style="font-family: Vazir; font-size:14px;"
-        onclick='addToCart(${JSON.stringify(p)}, this.parentElement.querySelector(".qty-value").innerText)'>
-        افزودن به سبد خرید
-    </button>
+                    <button class="btn"
+                        onclick='addToCart(${JSON.stringify(p)}, this.parentElement.querySelector(".qty-value").innerText)'>
+                        افزودن به سبد خرید
+                    </button>
 
-    <div class="qty-box" style="display:flex; align-items:center; gap:8px;">
+                    <div class="qty-box" style="display:flex; align-items:center; gap:8px;">
 
-        <button onclick="changeQty(this, -1)"
-            style="width:24px; height:24px; border-radius:6px; border:none; background:#eee; font-size:16px; cursor:pointer;">
-            –
-        </button>
+                        <button onclick="changeQty(this, -1)"
+                            style="width:24px; height:24px; border-radius:6px; border:none; background:#eee; font-size:16px; cursor:pointer;">
+                            –
+                        </button>
 
-        <span class="qty-value" style="min-width:26px; text-align:center; font-size:16px; font-weight:600;">
-            1
-        </span>
+                        <span class="qty-value" style="min-width:26px; text-align:center; font-size:16px; font-weight:600;">
+                            1
+                        </span>
 
-        <button onclick="changeQty(this, 1)"
-            style="width:24px; height:24px; border-radius:6px; border:none; background:#eee; font-size:16px; cursor:pointer;">
-            +
-        </button>
+                        <button onclick="changeQty(this, 1)"
+                            style="width:24px; height:24px; border-radius:6px; border:none; background:#eee; font-size:16px; cursor:pointer;">
+                            +
+                        </button>
 
-    </div>
+                    </div>
 
-</div>
+                </div>
 
+            </div>
         `;
     });
 
