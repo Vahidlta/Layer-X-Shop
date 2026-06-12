@@ -45,6 +45,8 @@ function addToCart(product, qty) {
     cart.push(product);
     localStorage.setItem("cart", JSON.stringify(cart));
 
+    updateCartCount();
+
     alert("به سبد خرید اضافه شد");
 }
 
@@ -72,7 +74,7 @@ function getColorCode(name) {
 ------------------------------ */
 function applyMobileLayout() {
     const grid = document.querySelector(".products-grid");
-    if (!grid) return; // اگر در cart یا checkout بودیم، grid وجود ندارد
+    if (!grid) return;
 
     const logo = document.querySelector(".logo");
     const nav = document.querySelector(".nav");
@@ -201,19 +203,33 @@ function removeItem(index) {
     cart.splice(index, 1);
     saveCart(cart);
     displayCart();
+    updateCartCount();
 }
 
 function displayCart() {
     const container = document.getElementById("cart-items");
-    if (!container) return; // یعنی در cart.html نیستیم
+    if (!container) return;
 
     let cart = loadCart();
     let totalPrice = 0;
 
+    let checkoutBtn = document.getElementById("checkout-btn");
+
     if (cart.length === 0) {
         container.innerHTML = "<p>سبد خرید شما خالی است.</p>";
+
+        if (checkoutBtn) {
+            checkoutBtn.style.pointerEvents = "none";
+            checkoutBtn.style.opacity = "0.4";
+        }
+
         document.getElementById("total-price").innerText = 0;
         return;
+    }
+
+    if (checkoutBtn) {
+        checkoutBtn.style.pointerEvents = "auto";
+        checkoutBtn.style.opacity = "1";
     }
 
     container.innerHTML = "";
@@ -243,6 +259,25 @@ function displayCart() {
 if (window.location.pathname.includes("cart.html")) {
     displayCart();
 }
+
+/* ------------------------------
+   CART BADGE (شمارنده سبد خرید)
+------------------------------ */
+function updateCartCount() {
+    let cart = loadCart();
+    let badge = document.getElementById("cart-count");
+
+    if (!badge) return;
+
+    if (cart.length === 0) {
+        badge.style.display = "none";
+    } else {
+        badge.style.display = "inline-block";
+        badge.innerText = cart.length;
+    }
+}
+
+updateCartCount();
 
 /* ------------------------------
    SUBMIT ORDER (Checkout)
