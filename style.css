@@ -1,4 +1,3 @@
-/* ———— فونت ———— */
 @font-face {
     font-family: 'Vazir';
     src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font/dist/Vazir.woff2') format('woff2');
@@ -14,7 +13,7 @@ body {
     color: #111;
 }
 
-/* ———— HEADER ———— */
+/* HEADER */
 .header {
     display:flex;
     justify-content:space-between;
@@ -46,20 +45,35 @@ body {
     text-decoration:none;
     color:#111;
     font-size:14px;
+    position:relative;
 }
 
-/* ———— MAIN ———— */
+/* CART BADGE */
+.cart-badge {
+    position:absolute;
+    top:-8px;
+    left:-10px;
+    background:#ff4444;
+    color:#fff;
+    padding:2px 6px;
+    font-size:12px;
+    border-radius:50%;
+    display:none;
+}
+
+/* MAIN */
 .featured {
     max-width:900px;
-    margin:40px auto;
+    margin:60px auto 200px;
     padding:0 20px;
 }
 
-/* ———— INDEX PAGE ———— */
+/* INDEX PAGE */
 .products-grid {
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:28px;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:24px;
+    padding:0 10px;
 }
 
 .product-card {
@@ -68,6 +82,7 @@ body {
     padding:18px;
     box-shadow:0 4px 10px rgba(0,0,0,0.04);
     position:relative;
+    background:#fff;
 }
 
 .product-image {
@@ -89,7 +104,7 @@ body {
 .in-stock { background:#d1fae5; color:#065f46; }
 .out-stock { background:#fee2e2; color:#991b1b; }
 
-/* ———— COLOR SELECTOR ———— */
+/* COLOR SELECTOR */
 .color-options { display:flex; gap:8px; margin-bottom:14px; }
 
 .color-circle {
@@ -108,7 +123,7 @@ body {
     outline:2px solid #111;
 }
 
-/* ———— BUTTONS ———— */
+/* BUTTONS */
 .btn {
     padding:10px 16px;
     border-radius:10px;
@@ -120,7 +135,7 @@ body {
     font-size:14px;
 }
 
-/* ———— QTY BUTTONS ———— */
+/* QTY BUTTONS */
 .qty-box button {
     width: 24px;
     height: 24px;
@@ -142,7 +157,7 @@ body {
     font-weight: 600;
 }
 
-/* ———— CONTACT PAGE ———— */
+/* CONTACT PAGE */
 .contact-box {
     background:#fafafa;
     border:1px solid #ddd;
@@ -173,7 +188,7 @@ body {
     resize:none;
 }
 
-/* ———— POLICY PAGE ———— */
+/* POLICY PAGE */
 .policy-box {
     background:#fafafa;
     border:1px solid #ddd;
@@ -189,7 +204,7 @@ body {
     font-size:16px;
 }
 
-/* ———— CART PAGE ———— */
+/* CART PAGE */
 .cart-box {
     background:#fafafa;
     border:1px solid #ddd;
@@ -238,7 +253,7 @@ body {
     align-items:center;
 }
 
-/* ———— CHECKOUT PAGE ———— */
+/* CHECKOUT PAGE */
 .checkout-box {
     background:#fafafa;
     border:1px solid #ddd;
@@ -269,7 +284,7 @@ body {
     resize:none;
 }
 
-/* ———— FOOTER ———— */
+/* FOOTER */
 .footer {
     text-align:center;
     padding:20px;
@@ -277,7 +292,7 @@ body {
     border-top:1px solid #ddd;
 }
 
-/* ———— MOBILE ———— */
+/* MOBILE */
 @media (max-width:768px) {
     .logo { height:32px; }
     .nav { gap:10px; }
