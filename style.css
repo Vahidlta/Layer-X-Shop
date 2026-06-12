@@ -1,3 +1,4 @@
+/* ———— فونت ———— */
 @font-face {
     font-family: 'Vazir';
     src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font/dist/Vazir.woff2') format('woff2');
@@ -13,7 +14,7 @@ body {
     color: #111;
 }
 
-/* HEADER */
+/* ———— HEADER ———— */
 .header {
     display:flex;
     justify-content:space-between;
@@ -47,14 +48,14 @@ body {
     font-size:14px;
 }
 
-/* MAIN */
+/* ———— MAIN ———— */
 .featured {
     max-width:900px;
     margin:40px auto;
     padding:0 20px;
 }
 
-/* PRODUCT GRID (INDEX) */
+/* ———— INDEX PAGE ———— */
 .products-grid {
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -88,7 +89,7 @@ body {
 .in-stock { background:#d1fae5; color:#065f46; }
 .out-stock { background:#fee2e2; color:#991b1b; }
 
-/* COLOR SELECTOR */
+/* ———— COLOR SELECTOR ———— */
 .color-options { display:flex; gap:8px; margin-bottom:14px; }
 
 .color-circle {
@@ -99,9 +100,7 @@ body {
     transition:0.2s;
 }
 
-.color-circle.white {
-    border: 1px solid #ccc;
-}
+.color-circle.white { border:1px solid #ccc; }
 
 .color-circle.selected {
     border-radius:6px !important;
@@ -109,7 +108,7 @@ body {
     outline:2px solid #111;
 }
 
-/* BUTTONS */
+/* ———— BUTTONS ———— */
 .btn {
     padding:10px 16px;
     border-radius:10px;
@@ -121,7 +120,7 @@ body {
     font-size:14px;
 }
 
-/* QTY BUTTONS */
+/* ———— QTY BUTTONS ———— */
 .qty-box button {
     width: 24px;
     height: 24px;
@@ -143,7 +142,7 @@ body {
     font-weight: 600;
 }
 
-/* CONTACT PAGE */
+/* ———— CONTACT PAGE ———— */
 .contact-box {
     background:#fafafa;
     border:1px solid #ddd;
@@ -174,7 +173,7 @@ body {
     resize:none;
 }
 
-/* POLICY PAGE */
+/* ———— POLICY PAGE ———— */
 .policy-box {
     background:#fafafa;
     border:1px solid #ddd;
@@ -190,7 +189,7 @@ body {
     font-size:16px;
 }
 
-/* CART PAGE */
+/* ———— CART PAGE ———— */
 .cart-box {
     background:#fafafa;
     border:1px solid #ddd;
@@ -239,7 +238,38 @@ body {
     align-items:center;
 }
 
-/* FOOTER */
+/* ———— CHECKOUT PAGE ———— */
+.checkout-box {
+    background:#fafafa;
+    border:1px solid #ddd;
+    border-radius:14px;
+    padding:25px;
+    margin-top:20px;
+}
+
+.checkout-form {
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.checkout-form input,
+.checkout-form textarea,
+.checkout-form select {
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-family:'Vazir';
+    font-size:14px;
+}
+
+.checkout-form textarea {
+    height:120px;
+    resize:none;
+}
+
+/* ———— FOOTER ———— */
 .footer {
     text-align:center;
     padding:20px;
@@ -247,7 +277,7 @@ body {
     border-top:1px solid #ddd;
 }
 
-/* MOBILE */
+/* ———— MOBILE ———— */
 @media (max-width:768px) {
     .logo { height:32px; }
     .nav { gap:10px; }
@@ -260,4 +290,6 @@ body {
         gap:12px;
         text-align:center;
     }
+
+    .checkout-box { padding:18px; }
 }
