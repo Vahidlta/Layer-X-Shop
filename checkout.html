@@ -24,12 +24,16 @@
         <a href="index.html">صفحه اصلی</a>
         <a href="contact.html">تماس با ما</a>
         <a href="policy.html">قوانین</a>
-        <a href="cart.html">سبد خرید</a>
+
+        <a href="cart.html" class="cart-link">
+            سبد خرید
+            <span id="cart-count" class="cart-badge">0</span>
+        </a>
     </nav>
 
 </header>
 
-<section class="featured">
+<section class="featured main">
     <h2>تکمیل اطلاعات سفارش</h2>
 
     <div class="checkout-box">
@@ -37,13 +41,13 @@
         <form class="checkout-form">
 
             <label>نام و نام خانوادگی</label>
-            <input type="text" id="name" placeholder="مثال: وحید محمدی" required>
+            <input type="text" id="name" required>
 
             <label>شماره موبایل</label>
-            <input type="text" id="phone" placeholder="مثال: 0912xxxxxxx" required>
+            <input type="text" id="phone" required>
 
             <label>آدرس کامل</label>
-            <textarea id="address" placeholder="آدرس دقیق پستی..." required></textarea>
+            <textarea id="address" required></textarea>
 
             <label>روش ارسال</label>
             <select id="shipping">
@@ -52,7 +56,7 @@
             </select>
 
             <label>یادداشت سفارش (اختیاری)</label>
-            <textarea id="note" placeholder="اگر توضیحی دارید اینجا بنویسید..."></textarea>
+            <textarea id="note"></textarea>
 
             <button type="button" class="btn" onclick="submitOrder()">ثبت سفارش</button>
 
