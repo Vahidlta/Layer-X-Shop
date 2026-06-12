@@ -1,273 +1,120 @@
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap');
+@font-face {
+    font-family: 'Vazir';
+    src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font/dist/Vazir.woff2') format('woff2');
+}
+
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Vazirmatn', sans-serif;
-    background: #111;
-    color: #eee;
+    font-family: 'Vazir', sans-serif;
+    background: #fff;
+    color: #111;
 }
 
-/* Header */
+/* HEADER */
 .header {
-    text-align: center;
-    padding: 30px 20px;
-    background: #0d0d0d;
-    border-bottom: 2px solid #ff6a00;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 28px;
+    border-bottom:1px solid #ddd;
+    background:#fff;
+    position:sticky;
+    top:0;
+    z-index:10;
 }
 
-.logo {
-    height: 120px;
-    margin-bottom: 10px;
+.header-left {
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
-.subtitle {
-    margin-top: 5px;
-    font-size: 18px;
-    color: #ccc;
-}
+.logo { height:42px; transition:0.2s; }
+
+.brand-title { margin:0; font-size:18px; font-weight:700; }
+.brand-sub { margin:0; font-size:12px; color:#6b7280; }
 
 .nav {
-    margin-top: 20px;
+    display:flex;
+    gap:18px;
 }
-
 .nav a {
-    color: #ff6a00;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: 600;
+    text-decoration:none;
+    color:#111;
+    font-size:14px;
 }
 
-.nav a:hover {
-    color: #fff;
-}
+/* MAIN */
+.main { max-width:1100px; margin:32px auto 140px; padding:0 16px; }
 
-/* Hero Section */
-.hero {
-    text-align: center;
-    padding: 80px 20px;
-    background: linear-gradient(180deg, #1a1a1a, #0f0f0f);
-}
-
-.hero h1 {
-    font-size: 60px;
-    margin-bottom: 10px;
-    color: #ff6a00;
-}
-
-.hero p {
-    font-size: 20px;
-    color: #ccc;
-}
-
-.btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 30px;
-    background: #ff6a00;
-    color: #000;
-    font-weight: 700;
-    border-radius: 6px;
-    text-decoration: none;
-}
-
-.btn:hover {
-    background: #ffa64d;
-}
-
-/* Featured Products */
-.featured {
-    padding: 60px 20px;
-    text-align: center;
-}
-
-.featured h2 {
-    color: #ff6a00;
-    margin-bottom: 40px;
-}
-
-.product-grid {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
+.products-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
 }
 
 .product-card {
-    background: #1a1a1a;
-    padding: 20px;
-    width: 260px;
-    border-radius: 10px;
-    border: 1px solid #333;
-    transition: 0.3s;
+    border:1px solid #ddd;
+    border-radius:14px;
+    padding:18px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.04);
+    position:relative;
 }
 
-.product-card:hover {
-    transform: translateY(-5px);
-    border-color: #ff6a00;
+.product-image {
+    width:100%;
+    height:240px;
+    object-fit:contain;
+    margin-bottom:12px;
 }
 
-.product-card img {
-    width: 100%;
-    border-radius: 8px;
+.status {
+    position:absolute;
+    top:12px;
+    right:12px;
+    padding:4px 10px;
+    border-radius:8px;
+    font-size:13px;
+    font-weight:600;
+}
+.in-stock { background:#d1fae5; color:#065f46; }
+.out-stock { background:#fee2e2; color:#991b1b; }
+
+.color-options { display:flex; gap:8px; margin-bottom:14px; }
+.color-circle {
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    cursor:pointer;
+    transition:0.2s;
 }
 
-.product-card h3 {
-    margin: 15px 0 5px;
+.btn {
+    padding:10px 16px;
+    border-radius:10px;
+    background:#111;
+    color:#fff;
+    border:none;
+    cursor:pointer;
+    font-family:'Vazir';
+    font-size:14px;
 }
 
-.btn-small {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 20px;
-    background: #ff6a00;
-    color: #000;
-    text-decoration: none;
-    border-radius: 6px;
-}
-
-.btn-small:hover {
-    background: #ffa64d;
-}
-
-/* Footer */
 .footer {
-    text-align: center;
-    padding: 30px;
-    background: #0d0d0d;
-    margin-top: 50px;
-    border-top: 2px solid #ff6a00;
+    text-align:center;
+    padding:20px;
+    color:#666;
+    border-top:1px solid #ddd;
 }
 
-.footer-logo {
-    height: 60px;
-    opacity: 0.8;
-}
-
-
-/* ------------------------------
-   Cart Page Styles
------------------------------- */
-
-.cart-box {
-    background: #1a1a1a;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #333;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.cart-item {
-    display: flex;
-    align-items: center;
-    background: #111;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #333;
-    transition: 0.3s;
-}
-
-.cart-item:hover {
-    border-color: #ff6a00;
-}
-
-.cart-img {
-    width: 90px;
-    height: 90px;
-    border-radius: 6px;
-    margin-left: 15px;
-    object-fit: cover;
-}
-
-.cart-info h3 {
-    margin: 0;
-    font-size: 18px;
-    color: #ff6a00;
-}
-
-.cart-info p {
-    margin: 5px 0 0;
-    color: #ccc;
-}
-
-.remove-btn {
-    margin-right: auto;
-    padding: 8px 15px;
-    background: #b30000;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.remove-btn:hover {
-    background: #ff1a1a;
-}
-
-.cart-summary {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 20px;
-}
-
-.cart-summary span {
-    color: #ff6a00;
-    font-weight: 700;
-}
-.policy-box {
-    background: #1a1a1a;
-    padding: 25px;
-    border-radius: 10px;
-    border: 1px solid #333;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: right;
-}
-
-.policy-box h3 {
-    color: #ff6a00;
-    margin-top: 25px;
-}
-
-.policy-box p {
-    color: #ccc;
-    line-height: 1.9;
-}
-
-.contact-box {
-    background: #1a1a1a;
-    padding: 25px;
-    border-radius: 10px;
-    border: 1px solid #333;
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: right;
-}
-
-.contact-box h3 {
-    color: #ff6a00;
-    margin-top: 25px;
-}
-
-.contact-form {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.contact-form input,
-.contact-form textarea {
-    background: #111;
-    border: 1px solid #333;
-    padding: 10px;
-    border-radius: 6px;
-    color: #eee;
-    margin-bottom: 15px;
-}
-
-.contact-form textarea {
-    height: 120px;
+/* MOBILE */
+@media (max-width:768px) {
+    .logo { height:32px; }
+    .nav { gap:10px; }
+    .nav a { font-size:12px; }
+    .header-left { gap:6px; }
+    .products-grid { grid-template-columns:1fr; }
 }
