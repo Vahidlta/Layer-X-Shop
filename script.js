@@ -72,7 +72,7 @@ function getColorCode(name) {
 ------------------------------ */
 function applyMobileLayout() {
     const grid = document.querySelector(".products-grid");
-    if (!grid) return; // اگر در cart.html بودیم، grid وجود ندارد
+    if (!grid) return; // اگر در cart یا checkout بودیم، grid وجود ندارد
 
     const logo = document.querySelector(".logo");
     const nav = document.querySelector(".nav");
@@ -242,4 +242,40 @@ function displayCart() {
 /* اجرای سبد خرید فقط در cart.html */
 if (window.location.pathname.includes("cart.html")) {
     displayCart();
+}
+
+/* ------------------------------
+   SUBMIT ORDER (Checkout)
+------------------------------ */
+function submitOrder() {
+    let name = document.getElementById("name").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let address = document.getElementById("address").value.trim();
+    let shipping = document.getElementById("shipping").value;
+    let note = document.getElementById("note").value.trim();
+
+    if (!name || !phone || !address) {
+        alert("لطفاً تمام فیلدهای ضروری را پر کنید");
+        return;
+    }
+
+    let cart = loadCart();
+    if (cart.length === 0) {
+        alert("سبد خرید شما خالی است");
+        return;
+    }
+
+    let order = {
+        name,
+        phone,
+        address,
+        shipping,
+        note,
+        cart,
+        date: new Date().toLocaleString("fa-IR")
+    };
+
+    localStorage.setItem("order", JSON.stringify(order));
+
+    alert("سفارش ثبت شد! (فعلاً بدون پرداخت)");
 }
