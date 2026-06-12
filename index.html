@@ -210,34 +210,34 @@ function renderProducts(products) {
 
                 <p class="product-price">${p.price} تومان</p>
 
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+<div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
 
-                    <div class="qty-box" style="display:flex; align-items:center; gap:8px;">
+    <button class="btn"
+        style="font-family: Vazir; font-size:14px;"
+        onclick='addToCart(${JSON.stringify(p)}, this.parentElement.querySelector(".qty-value").innerText)'>
+        افزودن به سبد خرید
+    </button>
 
-                        <button onclick="changeQty(this, -1)"
-                            style="width:26px; height:26px; border-radius:6px; border:none; background:#eee; font-size:18px; cursor:pointer;">
-                            –
-                        </button>
+    <div class="qty-box" style="display:flex; align-items:center; gap:8px;">
 
-                        <span class="qty-value" style="min-width:26px; text-align:center; font-size:16px; font-weight:600;">
-                            1
-                        </span>
+        <button onclick="changeQty(this, -1)"
+            style="width:24px; height:24px; border-radius:6px; border:none; background:#eee; font-size:16px; cursor:pointer;">
+            –
+        </button>
 
-                        <button onclick="changeQty(this, 1)"
-                            style="width:26px; height:26px; border-radius:6px; border:none; background:#eee; font-size:18px; cursor:pointer;">
-                            +
-                        </button>
+        <span class="qty-value" style="min-width:26px; text-align:center; font-size:16px; font-weight:600;">
+            1
+        </span>
 
-                    </div>
+        <button onclick="changeQty(this, 1)"
+            style="width:24px; height:24px; border-radius:6px; border:none; background:#eee; font-size:16px; cursor:pointer;">
+            +
+        </button>
 
-                    <button class="btn"
-                        onclick='addToCart(${JSON.stringify(p)}, this.parentElement.querySelector(".qty-value").innerText)'>
-                        افزودن به سبد خرید
-                    </button>
+    </div>
 
-                </div>
+</div>
 
-            </div>
         `;
     });
 
