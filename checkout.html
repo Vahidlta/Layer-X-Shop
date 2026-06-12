@@ -44,7 +44,17 @@
             <input type="text" id="name" required>
 
             <label>شماره موبایل</label>
-            <input type="text" id="phone" required>
+            <input type="text" id="phone" placeholder="مثال: 09121234567" required>
+
+            <label>ایمیل</label>
+            <input type="email" id="email" placeholder="example@gmail.com" required>
+
+            <button type="button" class="btn" id="sendCodeBtn" onclick="sendEmailCode()">
+                ارسال کد تأیید
+            </button>
+
+            <label>کد تأیید ایمیل</label>
+            <input type="text" id="emailCode" placeholder="کد ارسال شده را وارد کنید" required>
 
             <label>آدرس کامل</label>
             <textarea id="address" required></textarea>
