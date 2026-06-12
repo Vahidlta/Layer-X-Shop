@@ -83,7 +83,9 @@ body {
 .in-stock { background:#d1fae5; color:#065f46; }
 .out-stock { background:#fee2e2; color:#991b1b; }
 
+/* COLOR SELECTOR */
 .color-options { display:flex; gap:8px; margin-bottom:14px; }
+
 .color-circle {
     width:20px;
     height:20px;
@@ -92,6 +94,19 @@ body {
     transition:0.2s;
 }
 
+/* رنگ سفید باید مرز داشته باشد */
+.color-circle.white {
+    border: 1px solid #ccc;
+}
+
+/* حالت انتخاب‌شده */
+.color-circle.selected {
+    border-radius:6px !important;
+    transform:scale(1.25) !important;
+    outline:2px solid #111;
+}
+
+/* BUTTONS */
 .btn {
     padding:10px 16px;
     border-radius:10px;
@@ -103,6 +118,29 @@ body {
     font-size:14px;
 }
 
+/* QTY BUTTONS */
+.qty-box button {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    font-size: 16px;
+    cursor: pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+}
+
+.qty-value {
+    min-width: 26px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* FOOTER */
 .footer {
     text-align:center;
     padding:20px;
