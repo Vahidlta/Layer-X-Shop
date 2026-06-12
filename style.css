@@ -296,15 +296,19 @@ body {
     gap:10px;
 }
 
-.email-row input {
-    flex:1;
+.email-input {
+    flex: 2; /* بزرگ‌ترین */
 }
 
-#sendCodeBtn {
+.send-btn {
     padding:8px 12px;
     font-size:12px;
     border-radius:8px;
     white-space:nowrap;
+}
+
+.code-input {
+    flex: 1; /* کوچک‌تر */
 }
 
 /* FOOTER */
@@ -323,7 +327,7 @@ body {
         align-items:stretch;
     }
 
-    #sendCodeBtn {
+    .send-btn {
         width:100%;
     }
 
