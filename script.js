@@ -1,8 +1,7 @@
 /* ------------------------------
    تنظیمات CSV
 ------------------------------ */
-const CSV_URL =
-    "https://layerx-csv.lta1vahid.workers.dev/";
+const CSV_URL = "https://layerx-csv.lta1vahid.workers.dev/";
 
 let selectedColor = null;
 
@@ -99,19 +98,21 @@ window.addEventListener("load", applyMobileLayout);
 window.addEventListener("resize", applyMobileLayout);
 
 /* ------------------------------
-   لود CSV فقط در index.html
+   لود CSV در صفحه اصلی
 ------------------------------ */
 if (
     window.location.pathname === "/" ||
     window.location.pathname.endsWith("index.html")
 ) {
-
     Papa.parse(CSV_URL, {
         download: true,
         header: true,
         complete: function (result) {
             renderProducts(result.data);
         },
+        error: function (err) {
+            console.error("CSV Load Error:", err);
+        }
     });
 }
 
