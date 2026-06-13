@@ -101,7 +101,11 @@ window.addEventListener("resize", applyMobileLayout);
 /* ------------------------------
    لود CSV فقط در index.html
 ------------------------------ */
-if (window.location.pathname.includes("index.html")) {
+if (
+    window.location.pathname === "/" ||
+    window.location.pathname.endsWith("index.html")
+) {
+
     Papa.parse(CSV_URL, {
         download: true,
         header: true,
