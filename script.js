@@ -2,7 +2,7 @@
    تنظیمات CSV
 ------------------------------ */
 const CSV_URL =
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSrjXH-PDT3MeRA9UGsaJBQwoRfErVtwjifuF7QtFvDcLfwxIki-A7F2FjAD_V5OEDrJSMUrj03aUBT/pub?gid=0&single=true&output=csv";
+    "https://layerx-csv.lta1vahid.workers.dev/";
 
 let selectedColor = null;
 
